@@ -35,7 +35,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameMode;
 import org.apache.commons.lang3.StringUtils;
 import org.bleachhack.BleachHack;
-import org.bleachhack.command.commands.CmdEntityStats;
+//import org.bleachhack.command.commands.CmdEntityStats;
 import org.bleachhack.event.events.EventEntityRender;
 import org.bleachhack.event.events.EventTick;
 import org.bleachhack.event.events.EventWorldRender;
@@ -135,7 +135,7 @@ public class Nametags extends Module {
 
 					uuidFutures.remove(f.getKey());
 				} catch (InterruptedException | ExecutionException e) {
-					e.printStackTrace();
+//					e.printStackTrace();
 				}
 			}
 		}
@@ -327,9 +327,9 @@ public class Nametags extends Module {
 			if (getSetting(2).asToggle().getChild(6).asToggle().getState() && animal instanceof AbstractHorseEntity) {
 				AbstractHorseEntity he = (AbstractHorseEntity) animal;
 
-				lines.add(0, Text.literal(
-						CmdEntityStats.getSpeed(he) + " m/s" + Formatting.GRAY + " | " + Formatting.RESET + CmdEntityStats.getJumpHeight(he) + " Jump")
-						.formatted(Formatting.GREEN));
+//				lines.add(0, Text.literal(
+//						CmdEntityStats.getSpeed(he) + " m/s" + Formatting.GRAY + " | " + Formatting.RESET + CmdEntityStats.getJumpHeight(he) + " Jump")
+//						.formatted(Formatting.GREEN));
 			}
 		}
 		
@@ -435,12 +435,12 @@ public class Nametags extends Module {
 			try {
 				String url = "https://api.mojang.com/user/profiles/" + uuid.toString().replace("-", "") + "/names";
 				String response = Resources.toString(new URL(url), StandardCharsets.UTF_8);
-				BleachLogger.logger.info("bruh uuid time: " + url);
+//				BleachLogger.logger.info("bruh uuid time: " + url);
 
 				JsonElement json = JsonParser.parseString(response);
 
 				if (!json.isJsonArray()) {
-					BleachLogger.logger.error("[Nametags] Invalid Owner UUID: " + uuid);
+//					BleachLogger.logger.error("[Nametags] Invalid Owner UUID: " + uuid);
 					return "\u00a7c[Invalid]";
 				}
 
@@ -448,7 +448,7 @@ public class Nametags extends Module {
 
 				return ja.get(ja.size() - 1).getAsJsonObject().get("name").getAsString();
 			} catch (IOException e) {
-				BleachLogger.logger.error("[Nametags] Error Getting Owner UUID: " + uuid);
+//				BleachLogger.logger.error("[Nametags] Error Getting Owner UUID: " + uuid);
 				return "\u00a7c[Error]";
 			}
 		}));

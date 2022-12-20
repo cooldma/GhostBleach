@@ -26,7 +26,7 @@ public class AutoGrind extends Module {
 		super.onEnable(inWorld);
 
 		if (getSetting(0).asList(Item.class).getValue().isEmpty()) {
-			BleachLogger.error("AutoGrind items are empty.");
+//			BleachLogger.error("AutoGrind items are empty.");
 			setEnabled(false);
 		}
 	}

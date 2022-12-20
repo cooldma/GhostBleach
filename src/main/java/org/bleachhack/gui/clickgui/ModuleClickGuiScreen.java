@@ -14,7 +14,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.bleachhack.BleachHack;
-import org.bleachhack.command.Command;
+//import org.bleachhack.command.Command;
 import org.bleachhack.gui.clickgui.window.ClickGuiWindow;
 import org.bleachhack.gui.clickgui.window.ModuleWindow;
 import org.bleachhack.gui.window.Window;
@@ -104,8 +104,8 @@ public class ModuleClickGuiScreen extends ClickGuiScreen {
 		textRenderer.draw(matrices, "BleachHack-" + BleachHack.VERSION + "-" + SharedConstants.getGameVersion().getName(), 2, 2, 0x6090d0);
 
 		if (clickGui.getSetting(2).asToggle().getState()) {
-			textRenderer.drawWithShadow(matrices, "Current prefix is: \"" + Command.getPrefix() + "\" (" + Command.getPrefix() + "help)", 2, height - 20, 0x99ff99);
-			textRenderer.drawWithShadow(matrices, "Use " + Command.getPrefix() + "clickgui to reset the clickgui", 2, height - 10, 0x9999ff);
+//			textRenderer.drawWithShadow(matrices, "Current prefix is: \"" + Command.getPrefix() + "\" (" + Command.getPrefix() + "help)", 2, height - 20, 0x99ff99);
+//			textRenderer.drawWithShadow(matrices, "Use " + Command.getPrefix() + "clickgui to reset the clickgui", 2, height - 10, 0x9999ff);
 		}
 	}
 }

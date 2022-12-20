@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "id": "bleachhack",
+  "id": "lithium",
   "version": "${version}",
-
-  "name": "BleachHack",
-  "description": "gamer obama utility mod",
+  "name": "Lithium",
+  "description": "Lithium is a free and open-source optimization mod for Minecraft which makes a wide range of performance improvements to the game.",
   "authors": [
-    "Bleach"
+    "JellySquid",
+    "2No2Name"
   ],
   "contact": {
-    "homepage": "https://bleachhack.org/",
-    "sources": "https://github.com/BleachDev/BleachHack"
+    "homepage": "https://jellysquid.me/projects/",
+    "sources": "https://github.com/CaffeineMC/lithium-fabric",
+    "issues": "https://github.com/CaffeineMC/lithium-fabric/issues"
   },
-
-  "license": "CC0-1.0",
+  "license": "LGPL-3.0-only",
   "icon": "assets/bleachhack/icon.png",
 
   "environment": "*",

@@ -8,6 +8,9 @@
  */
 package org.bleachhack.module.mods;
 
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.player.PlayerAbilities;
+import net.minecraft.network.packet.s2c.play.PlayerAbilitiesS2CPacket;
 import org.bleachhack.event.events.EventPacket;
 import org.bleachhack.event.events.EventTick;
 import org.bleachhack.eventbus.BleachSubscribe;
@@ -20,6 +23,7 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import org.bleachhack.util.BleachLogger;
 
 public class Flight extends Module {
 
@@ -36,13 +40,23 @@ public class Flight extends Module {
 	public void onDisable(boolean inWorld) {
 		if (inWorld)
 			mc.player.getAbilities().flying = false;
-		
+
 		super.onDisable(inWorld);
 	}
 
 	@BleachSubscribe
 	public void onTick(EventTick event) {
 		float speed = getSetting(1).asSlider().getValueFloat();
+
+		mc.player.stopFallFlying();
+		if (!Speed.hasElytra(mc.player.getInventory())) {
+			return;
+		}
+
+		if (mc.player.isFallFlying() && mc.player.fallDistance <= 3) {
+			return;
+		}
+
 
 		if (mc.player.age % 20 == 0 && getSetting(2).asMode().getMode() == 3 && !(getSetting(0).asMode().getMode() == 1)) {
 			mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX(), mc.player.getY() - 0.069, mc.player.getZ(), false));

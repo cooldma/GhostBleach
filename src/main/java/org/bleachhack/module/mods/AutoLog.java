@@ -64,10 +64,10 @@ public class AutoLog extends Module {
 			smartDisabled = false;
 			
 			if (getSetting(4).asToggle().getChild(0).asToggle().getState()) {
-				BleachLogger.info("Re-enabled AutoLog!");
+//				BleachLogger.info("Re-enabled AutoLog!");
 			}
 		} else if (!smartDisabled && logText != null) {
-			log(logText);
+//			log(logText);
 		}
 	}
 

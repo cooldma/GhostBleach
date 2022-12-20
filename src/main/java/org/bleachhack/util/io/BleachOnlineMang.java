@@ -40,22 +40,22 @@ public class BleachOnlineMang {
 	}
 
 	public static <T> T getResource(String path, BodyHandler<T> handler) {
-		BleachLogger.logger.info("Getting Resource (/" + path + ")");
+//		BleachLogger.logger.info("Getting Resource (/" + path + ")");
 		return sendRequest(RESOURCE_URL.resolve(path), "GET", null, null, 5000, handler).body();
 	}
 
 	public static <T> CompletableFuture<T> getResourceAsync(String path, BodyHandler<T> handler) {
-		BleachLogger.logger.info("Getting Resource (/" + path + ")");
+//		BleachLogger.logger.info("Getting Resource (/" + path + ")");
 		return sendAsyncRequest(RESOURCE_URL.resolve(path), "GET", null, null, 5000, handler).thenApply(HttpResponse::body);
 	}
 
 	public static <T> T sendApiGet(String path, BodyHandler<T> handler) {
-		BleachLogger.logger.info("Trying to call API (GET, /" + path + ")");
+//		BleachLogger.logger.info("Trying to call API (GET, /" + path + ")");
 		return sendRequest(API_URL.resolve(path), "GET", null, null, 5000, handler).body();
 	}
 
 	public static <T> T sendApiPost(String path, String body, BodyHandler<T> handler) {
-		BleachLogger.logger.info("Trying to call API (POST, /" + path + ", " + body + ")");
+//		BleachLogger.logger.info("Trying to call API (POST, /" + path + ", " + body + ")");
 		return sendRequest(API_URL.resolve(path), "POST", null, body, 5000, handler).body();
 	}
 
@@ -76,7 +76,7 @@ public class BleachOnlineMang {
 
 			return client.send(rqBuilder.build(), handler);
 		} catch (IOException | InterruptedException e) {
-			BleachLogger.logger.error(e);
+//			BleachLogger.logger.error(e);
 			return null;
 		}
 	}

@@ -37,7 +37,7 @@ public class AutoCraft extends Module {
 
 		crafted = 0;
 		if (getSetting(0).asList(Item.class).getValue().isEmpty()) {
-			BleachLogger.error("AutoCraft items are empty.");
+//			BleachLogger.error("AutoCraft items are empty.");
 			setEnabled(false);
 		}
 	}
@@ -47,7 +47,7 @@ public class AutoCraft extends Module {
 		SettingToggle maxItems = getSetting(3).asToggle();
 		if (maxItems.getState() && crafted >= maxItems.getChild(0).asSlider().getValueInt()) {
 			if (maxItems.getChild(1).asToggle().getState())
-				BleachLogger.info("Disabled AutoCraft after crafting " + crafted + " items.");
+//				BleachLogger.info("Disabled AutoCraft after crafting " + crafted + " items.");
 
 			setEnabled(false);
 			return;

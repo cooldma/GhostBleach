@@ -31,7 +31,7 @@ public class BleachJsonHelper {
 				try {
 					json = JsonParser.parseString(content).getAsJsonObject();
 				} catch (Exception e) {
-					BleachLogger.logger.error("Error trying to read json file \"" + path + "\", Overwriting file to add element!", e);
+//					BleachLogger.logger.error("Error trying to read json file \"" + path + "\", Overwriting file to add element!", e);
 				}
 			}
 		}
@@ -68,7 +68,7 @@ public class BleachJsonHelper {
 		try {
 			return JsonParser.parseString(content).getAsJsonObject();
 		} catch (JsonParseException | IllegalStateException e) {
-			BleachLogger.logger.error("Error trying to read json file \"" + path + "\", Deleting file!", e);
+//			BleachLogger.logger.error("Error trying to read json file \"" + path + "\", Deleting file!", e);
 
 			BleachFileMang.deleteFile(path);
 			return null;

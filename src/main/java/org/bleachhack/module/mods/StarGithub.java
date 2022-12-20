@@ -23,7 +23,7 @@ public class StarGithub extends Module {
 		try {
 			Util.getOperatingSystem().open("https://github.com/BleachDev/BleachHack");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 
 		this.setEnabled(false);

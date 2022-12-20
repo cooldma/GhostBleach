@@ -8,6 +8,7 @@
  */
 package org.bleachhack.event.events;
 
+import net.minecraft.client.MinecraftClient;
 import org.bleachhack.event.Event;
 
 import net.minecraft.client.util.math.MatrixStack;
@@ -42,4 +43,6 @@ public class EventWorldRender extends Event {
 	public MatrixStack getMatrices() {
 		return matrices;
 	}
+
+
 }

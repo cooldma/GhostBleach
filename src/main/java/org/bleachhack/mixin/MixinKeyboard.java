@@ -9,7 +9,7 @@
 package org.bleachhack.mixin;
 
 import org.bleachhack.BleachHack;
-import org.bleachhack.command.Command;
+//import org.bleachhack.command.Command;
 import org.bleachhack.event.events.EventKeyPress;
 import org.bleachhack.module.ModuleManager;
 import org.bleachhack.setting.option.Option;
@@ -39,8 +39,8 @@ public class MixinKeyboard {
 	
 	@Inject(method = "onKey", at = @At(value = "INVOKE", target = "net/minecraft/client/util/InputUtil.isKeyPressed(JI)Z", ordinal = 5), cancellable = true)
 	private void onKeyEvent_1(long windowPointer, int key, int scanCode, int action, int modifiers, CallbackInfo callbackInfo) {
-		if (Option.CHAT_QUICK_PREFIX.getValue() && Command.getPrefix().length() == 1 && key == Command.getPrefix().charAt(0)) {
-			MinecraftClient.getInstance().setScreen(new ChatScreen(Command.getPrefix()));
+		if (Option.CHAT_QUICK_PREFIX.getValue()) {
+//			MinecraftClient.getInstance().setScreen(new ChatScreen(Command.getPrefix()));
 		}
 
 		ModuleManager.handleKey(key);

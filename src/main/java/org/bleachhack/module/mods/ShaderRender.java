@@ -66,7 +66,7 @@ public class ShaderRender extends Module {
 				lastShader = new ShaderEffect(mc.getTextureManager(), mc.getResourceManager(), mc.getFramebuffer(), lastId);
 				lastShader.setupDimensions(mc.getWindow().getFramebufferWidth(), mc.getWindow().getFramebufferHeight());
 			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
 			}
 		}
 

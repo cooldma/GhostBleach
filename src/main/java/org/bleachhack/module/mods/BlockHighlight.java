@@ -12,7 +12,7 @@ import org.bleachhack.setting.module.SettingMode;
 import org.bleachhack.setting.module.SettingSlider;
 import org.bleachhack.util.render.Renderer;
 import org.bleachhack.util.render.color.QuadColor;
-import org.bleachhack.util.shader.BleachCoreShaders;
+//import org.bleachhack.util.shader.BleachCoreShaders;
 import org.bleachhack.util.shader.ColorVertexConsumerProvider;
 import org.bleachhack.util.shader.ShaderEffectWrapper;
 
@@ -52,15 +52,15 @@ public class BlockHighlight extends Module {
 	public void onEnable(boolean inWorld) {
 		super.onEnable(inWorld);
 
-		try {
-			shader = new ShaderEffectWrapper(
-					new ShaderEffect(mc.getTextureManager(), mc.getResourceManager(), mc.getFramebuffer(), new Identifier("bleachhack", "shaders/post/entity_outline.json")));
-
-			colorVertexer = new ColorVertexConsumerProvider(shader.getFramebuffer("main"), BleachCoreShaders::getColorOverlayShader);
-		} catch (JsonSyntaxException | IOException e) {
-			e.printStackTrace();
-			setEnabled(false);
-		}
+//		try {
+//			shader = new ShaderEffectWrapper(
+//					new ShaderEffect(mc.getTextureManager(), mc.getResourceManager(), mc.getFramebuffer(), new Identifier("bleachhack", "shaders/post/entity_outline.json")));
+//
+//			colorVertexer = new ColorVertexConsumerProvider(shader.getFramebuffer("main"), BleachCoreShaders::getColorOverlayShader);
+//		} catch (JsonSyntaxException | IOException e) {
+//			e.printStackTrace();
+//			setEnabled(false);
+//		}
 	}
 
 	@BleachSubscribe

@@ -11,29 +11,41 @@ package org.bleachhack;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import com.mojang.authlib.yggdrasil.request.AbuseReportRequest;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.MinecraftVersion;
 import net.minecraft.SharedConstants;
 
+import java.io.OutputStream;
+import java.net.URL;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.concurrent.CompletableFuture;
 
-import org.apache.logging.log4j.Level;
-import org.bleachhack.command.CommandManager;
-import org.bleachhack.command.CommandSuggestor;
+//import org.bleachhack.command.CommandManager;
+//import org.bleachhack.command.CommandSuggestor;
+import net.minecraft.advancement.criterion.PlayerGeneratesContainerLootCriterion;
+import net.minecraft.client.ClientBrandRetriever;
+import net.minecraft.client.ClientGameSession;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.MinecraftClientGame;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.bleachhack.eventbus.BleachEventBus;
 import org.bleachhack.eventbus.handler.InexactEventHandler;
-import org.bleachhack.gui.BleachTitleScreen;
 import org.bleachhack.gui.clickgui.ModuleClickGuiScreen;
 import org.bleachhack.module.ModuleManager;
+import org.bleachhack.module.mods.Panic;
 import org.bleachhack.setting.option.Option;
 import org.bleachhack.util.BleachLogger;
 import org.bleachhack.util.BleachPlayerManager;
 import org.bleachhack.util.FriendManager;
 import org.bleachhack.util.Watermark;
+import org.bleachhack.util.auth.LoginCrypter;
 import org.bleachhack.util.io.BleachFileHelper;
 import org.bleachhack.util.io.BleachFileMang;
 import org.bleachhack.util.io.BleachJsonHelper;
 import org.bleachhack.util.io.BleachOnlineMang;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class BleachHack implements ModInitializer {
 
@@ -94,10 +106,10 @@ public class BleachHack implements ModInitializer {
 
 		JsonElement mainMenu = BleachFileHelper.readMiscSetting("customTitleScreen");
 		if (mainMenu != null && !mainMenu.getAsBoolean()) {
-			BleachTitleScreen.customTitleScreen = false;
+//			BleachTitleScreen.customTitleScreen = false;
 		}
 
-		BleachLogger.logger.log(Level.INFO, "Loaded BleachHack (Phase 1) in %d ms.", System.currentTimeMillis() - initStartTime);
+//		BleachLogger.logger.log(Level.INFO, "Loaded BleachHack (Phase 1) in %d ms.", System.currentTimeMillis() - initStartTime);
 	}
 
 	// Phase 2
@@ -113,12 +125,12 @@ public class BleachHack implements ModInitializer {
 		BleachFileHelper.readClickGui();
 		BleachFileHelper.readUI();
 
-		CommandManager.loadCommands(this.getClass().getClassLoader().getResourceAsStream("bleachhack.commands.json"));
-		CommandSuggestor.start();
+//		CommandManager.loadCommands(this.getClass().getClassLoader().getResourceAsStream("bleachhack.commands.json"));
+//		CommandSuggestor.start();
 
 		BleachFileHelper.startSavingExecutor();
 
-		BleachLogger.logger.log(Level.INFO, "Loaded BleachHack (Phase 2) in %d ms.", System.currentTimeMillis() - initStartTime);
+//		BleachLogger.logger.log(Level.INFO, "Loaded BleachHack (Phase 2) in %d ms.", System.currentTimeMillis() - initStartTime);
 	}
 
 	public static JsonObject getUpdateJson() {

@@ -64,7 +64,7 @@ public class BleachLogger {
 	// Error
 	
 	public static void error(String s) {
-		error(Text.literal(s));
+//		error(Text.literal(s));
 	}
 
 	public static void error(Text t) {

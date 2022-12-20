@@ -42,7 +42,7 @@ public class BleachFileMang {
 		} catch (NoSuchFileException ignored) {
 
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Reading File: " + path, e);
+//			BleachLogger.logger.error("Error Reading File: " + path, e);
 		}
 
 		return "";
@@ -55,7 +55,7 @@ public class BleachFileMang {
 		} catch (NoSuchFileException ignored) {
 
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Reading File: " + path, e);
+//			BleachLogger.logger.error("Error Reading File: " + path, e);
 		}
 
 		return new ArrayList<>();
@@ -69,7 +69,7 @@ public class BleachFileMang {
 				Files.createFile(getDir().resolve(path));
 			}
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Creating File: " + path, e);
+//			BleachLogger.logger.error("Error Creating File: " + path, e);
 		}
 	}
 
@@ -82,7 +82,7 @@ public class BleachFileMang {
 			writer.write("");
 			writer.close();
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Clearing/Creating File: " + path, e);
+//			BleachLogger.logger.error("Error Clearing/Creating File: " + path, e);
 		}
 	}
 
@@ -97,7 +97,7 @@ public class BleachFileMang {
 					+ (content.endsWith("\n") ? "" : "\n"));
 			writer.close();
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Appending File: " + path, e);
+//			BleachLogger.logger.error("Error Appending File: " + path, e);
 		}
 	}
 
@@ -115,7 +115,7 @@ public class BleachFileMang {
 		try {
 			Files.deleteIfExists(getDir().resolve(path));
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error Deleting File: " + path, e);
+//			BleachLogger.logger.error("Error Deleting File: " + path, e);
 		}
 	}
 }

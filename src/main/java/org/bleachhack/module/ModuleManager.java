@@ -43,15 +43,15 @@ public class ModuleManager {
 
 							loadModule(module);
 						} catch (Exception exception) {
-							BleachLogger.logger.error("Failed to load module %s: could not instantiate.", moduleClass);
+//							BleachLogger.logger.error("Failed to load module %s: could not instantiate.", moduleClass);
 							exception.printStackTrace();
 						}
 					} else {
-						BleachLogger.logger.error("Failed to load module %s: not a descendant of Module.", moduleClass);
+//						BleachLogger.logger.error("Failed to load module %s: not a descendant of Module.", moduleClass);
 					}
 				} catch (Exception exception) {
-					BleachLogger.logger.error("Failed to load module %s.", moduleString);
-					exception.printStackTrace();
+//					BleachLogger.logger.error("Failed to load module %s.", moduleString);
+//					exception.printStackTrace();
 				}
 			}
 		} finally {
@@ -60,8 +60,9 @@ public class ModuleManager {
 	}
 
 	public static void loadModule(Module module) {
-		if (!MODULES.add(module))
-			BleachLogger.logger.error("Failed to load module %s: a module with this name is already loaded.", module.getName());
+		if (!MODULES.add(module)) {
+//			BleachLogger.logger.error("Failed to load module %s: a module with this name is already loaded.", module.getName());
+		}
 	}
 
 	public static Iterable<Module> getModules() {

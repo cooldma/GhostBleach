@@ -108,7 +108,7 @@ public class BleachFileHelper {
 					try {
 						mod.setEnabled(mo.get("toggled").getAsBoolean());
 					} catch (Exception ex) {
-						BleachLogger.error("Error enabling " + e.getKey() + ", Disabling!");
+//						BleachLogger.error("Error enabling " + e.getKey() + ", Disabling!");
 
 						try {
 							mod.setEnabled(false);
@@ -127,10 +127,10 @@ public class BleachFileHelper {
 							 if (s != null) {
 								 s.read(se.getValue());
 							 } else {
-								 BleachLogger.logger.warn("Error reading setting \"" + se.getKey() + "\" in module " + mod.getName() + ", removed?");
+//								 BleachLogger.logger.warn("Error reading setting \"" + se.getKey() + "\" in module " + mod.getName() + ", removed?");
 							 }
 						} catch (Exception ex) {
-							BleachLogger.logger.error("Error reading setting \"" + se.getKey() + "\" in module " + mod.getName() + ": " + se.getValue(), ex);
+//							BleachLogger.logger.error("Error reading setting \"" + se.getKey() + "\" in module " + mod.getName() + ": " + se.getValue(), ex);
 						}
 					}
 				}
@@ -215,7 +215,7 @@ public class BleachFileHelper {
 							((ClickGuiWindow) w).hiding = jw.get("hidden").getAsBoolean();
 						}
 					} catch (Exception ex) {
-						BleachLogger.logger.error("Error trying to load clickgui window: " + e.getKey() + " with data: " + e.getValue());
+//						BleachLogger.logger.error("Error trying to load clickgui window: " + e.getKey() + " with data: " + e.getValue());
 					}
 				}
 			}

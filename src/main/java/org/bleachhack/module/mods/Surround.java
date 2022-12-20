@@ -82,7 +82,7 @@ public class Surround extends Module {
 				i -> getSetting(7).asList(Block.class).contains(Block.getBlockFromItem(mc.player.getInventory().getStack(i).getItem())));
 
 		if (slot == -1) {
-			BleachLogger.error("No blocks to surround with!");
+//			BleachLogger.error("No blocks to surround with!");
 			setEnabled(false);
 			return;
 		}

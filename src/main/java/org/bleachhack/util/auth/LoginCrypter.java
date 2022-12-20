@@ -42,7 +42,7 @@ public class LoginCrypter {
 			key = new SecretKeySpec(pass, "AES");
 			dcipher = Cipher.getInstance("AES");
 		} catch (Exception e) {
-			BleachLogger.logger.error("Error initing login crypter");
+//			BleachLogger.logger.error("Error initing login crypter");
 		}
 	}
 

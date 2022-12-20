@@ -10,8 +10,8 @@ package org.bleachhack.mixin;
 
 import net.minecraft.network.PacketCallbacks;
 import org.bleachhack.BleachHack;
-import org.bleachhack.command.Command;
-import org.bleachhack.command.CommandManager;
+//import org.bleachhack.command.Command;
+//import org.bleachhack.command.CommandManager;
 import org.bleachhack.event.events.EventPacket;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -49,17 +49,17 @@ public class MixinClientConnection {
 
 	@Inject(method = "send(Lnet/minecraft/network/Packet;Lnet/minecraft/network/PacketCallbacks;)V", at = @At("HEAD"), cancellable = true)
 	private void send(Packet<?> packet, PacketCallbacks packetCallback, CallbackInfo callback) {
-		if (packet instanceof ChatMessageC2SPacket) {
-			if (!CommandManager.allowNextMsg) {
-				ChatMessageC2SPacket pack = (ChatMessageC2SPacket) packet;
-				if (pack.chatMessage().startsWith(Command.getPrefix())) {
-					CommandManager.callCommand(pack.chatMessage().substring(Command.getPrefix().length()));
-					callback.cancel();
-				}
-			}
-
-			CommandManager.allowNextMsg = false;
-		}
+//		if (packet instanceof ChatMessageC2SPacket) {
+//			if (!CommandManager.allowNextMsg) {
+//				ChatMessageC2SPacket pack = (ChatMessageC2SPacket) packet;
+//				if (pack.chatMessage().startsWith(Command.getPrefix())) {
+//					CommandManager.callCommand(pack.chatMessage().substring(Command.getPrefix().length()));
+//					callback.cancel();
+//				}
+//			}
+//
+//			CommandManager.allowNextMsg = false;
+//		}
 
 		EventPacket.Send event = new EventPacket.Send(packet);
 		BleachHack.eventBus.post(event);

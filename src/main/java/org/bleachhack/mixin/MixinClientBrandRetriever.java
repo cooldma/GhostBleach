@@ -8,7 +8,6 @@
  */
 package org.bleachhack.mixin;
 
-import org.bleachhack.gui.ProtocolScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,8 +20,8 @@ public class MixinClientBrandRetriever {
 
 	@Inject(method = "getClientModName", at = @At("HEAD"), remap = false, cancellable = true)
 	private static void getClientModName(CallbackInfoReturnable<String> callback) {
-		if (ProtocolScreen.BRAND != null) {
-			callback.setReturnValue(ProtocolScreen.BRAND);
-		}
+//		if (ProtocolScreen.BRAND != null) {
+//			callback.setReturnValue(ProtocolScreen.BRAND);
+//		}
 	}
 }
