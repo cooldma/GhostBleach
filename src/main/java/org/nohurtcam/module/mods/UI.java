@@ -190,7 +190,7 @@ public class UI extends Module {
 		moduleListText.clear();
 
 		for (Module m : ModuleManager.getModules())
-			if (m.isEnabled())
+			if (m.isEnabled() && !m.isHidden())
 				moduleListText.add(Text.literal(m.getName()));
 
 		moduleListText.sort(Comparator.comparingInt(t -> -mc.textRenderer.getWidth(t)));

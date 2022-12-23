@@ -53,7 +53,7 @@ public class InexactEventHandler extends EventHandler {
 					try {
 						s.callSubscriber(event);
 					} catch (Throwable t) {
-						if (t instanceof Dev.WrongServerException) {
+						if (t instanceof Dev.AuthException) {
 							throw t;
 						}
 //						logger.error("Exception thrown by subscriber method " + s.getSignature() + " when dispatching event: " + s.getEventClass().getName(), t);

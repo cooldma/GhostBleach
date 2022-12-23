@@ -15,8 +15,10 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.nohurtcam.module.Module;
+import org.nohurtcam.module.ModuleCategory;
 import org.nohurtcam.module.ModuleManager;
 import org.nohurtcam.module.mods.ClickGui;
+import org.nohurtcam.module.mods.Dev;
 import org.nohurtcam.setting.module.ModuleSetting;
 
 import net.minecraft.client.font.TextRenderer;
@@ -49,6 +51,15 @@ public class ModuleWindow extends ClickGuiWindow {
 		y2 = getHeight();
 	}
 
+	private static int findLen(List<Module> mods, int len) {
+		for (Module m : mods) {
+			if (m instanceof Dev) {
+				return len - 1;
+			}
+		}
+		return len;
+	}
+
 	public void render(MatrixStack matrices, int mouseX, int mouseY) {
 		tooltip = null;
 		int x = x1 + 1;
@@ -64,12 +75,17 @@ public class ModuleWindow extends ClickGuiWindow {
 
 		int curY = 0;
 		for (Entry<Module, Boolean> m : mods.entrySet()) {
+			if (m.getKey().isHidden()) {
+				continue;
+			}
+
 			if (mouseOver(x, y + curY, x + len, y + 12 + curY)) {
 				DrawableHelper.fill(matrices, x, y + curY, x + len, y + 12 + curY, 0x70303070);
 			}
 
 			// If they match: Module gets marked red
-			if (searchedModules != null && searchedModules.contains(m.getKey()) && ModuleManager.getModule(ClickGui.class).getSetting(1).asToggle().getState()) {
+			if (searchedModules != null && searchedModules.contains(m.getKey()) &&
+					ModuleManager.getModule(ClickGui.class).getSetting(1).asToggle().getState()) {
 				DrawableHelper.fill(matrices, x, y + curY, x + len, y + 12 + curY, 0x50ff0000);
 			}
 
@@ -122,6 +138,10 @@ public class ModuleWindow extends ClickGuiWindow {
 	public int getHeight() {
 		int h = 1;
 		for (Entry<Module, Boolean> e : mods.entrySet()) {
+
+			if (e.getKey().isHidden()) {
+				continue;
+			}
 			h += 12;
 
 			if (e.getValue()) {

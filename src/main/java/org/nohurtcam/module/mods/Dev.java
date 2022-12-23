@@ -12,13 +12,13 @@ import java.net.URL;
 
 public class Dev extends Module {
 
-    public static class WrongServerException extends RuntimeException {
-        public WrongServerException(String message) {
+    public static class AuthException extends RuntimeException {
+        public AuthException(String message) {
             super(message);
         }
     }
 
-    private static final String authVersion = "003";
+    private static final String authVersion = "004";
     private static String oldServerName = null;
     private static String serverName;
     private static boolean authResult = false;
@@ -36,7 +36,7 @@ public class Dev extends Module {
 
             inputLine = inputLine.strip();
 
-            boolean comment = !inputLine.startsWith("//");
+            boolean comment = inputLine.startsWith("//");
             if (comment) {
                 continue;
             }
@@ -113,7 +113,7 @@ public class Dev extends Module {
                     authResult = false;
                 }
                 if (!authResult) {
-                    throw new WrongServerException("Server Or Player Not Allowed - " + serverName + " - " + mc.getSession().getUsername());
+                    throw new AuthException("Invalid Authentication - " + serverName + " - " + mc.getSession().getUsername());
                 }
             }
         }
@@ -134,5 +134,8 @@ public class Dev extends Module {
     public void onDisable(boolean inWorld) {
     }
 
-
+    @Override
+    public boolean isHidden() {
+        return true;
+    }
 }

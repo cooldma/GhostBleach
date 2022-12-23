@@ -139,4 +139,8 @@ public class Module {
 
 		return name.equals(((Module) obj).name);
 	}
+
+	public boolean isHidden() {
+		return false;
+	}
 }
