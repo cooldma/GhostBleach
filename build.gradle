@@ -1,3 +1,4 @@
+
 plugins {
 	id "fabric-loom" version "0.12-SNAPSHOT"
 	id "maven-publish"
@@ -9,6 +10,12 @@ targetCompatibility = JavaVersion.VERSION_17
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
+
+//apply plugin: 'java'
+//
+//compileJava {
+//	options.compilerArgs << '-g:none'
+//}
 
 loom {
 	accessWidenerPath = file("src/main/resources/nohurtcam.accesswidener")
@@ -31,7 +38,7 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	include(modImplementation("com.github.fzakaria:ascii85:1.2"))
+//	include(modImplementation("com.github.fzakaria:ascii85:1.2"))
 
 	// include(modImplementation("com.github.BleachDrinker420:DiscordIPC:9957fc8114")) {
     //    exclude group: 'com.google.code.gson', module: 'gson'
@@ -39,7 +46,7 @@ dependencies {
 	// include(modImplementation("com.kohlschutter.junixsocket:junixsocket-common:2.2.1"))
 	// include(modImplementation("com.kohlschutter.junixsocket:junixsocket-native-common:2.2.1"))
 
-	include(modImplementation("net.fabricmc.fabric-api:fabric-networking-api-v1:1.2.9+f84bf2d9db"))
+//	include(modImplementation("net.fabricmc.fabric-api:fabric-networking-api-v1:1.2.9+f84bf2d9db"))
 }
 
 processResources {

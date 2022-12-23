@@ -10,7 +10,7 @@ package org.nohurtcam.mixin;
 
 import org.nohurtcam.module.Module;
 import org.nohurtcam.module.ModuleManager;
-import org.nohurtcam.module.mods.NoKeyBlock;
+//import org.nohurtcam.module.mods.NoKeyBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
@@ -19,16 +19,16 @@ import net.minecraft.SharedConstants;
 @Mixin(SharedConstants.class)
 public class MixinSharedConstants {
 
-	@Overwrite
-	public static boolean isValidChar(char chr) {
-		Module noKeyBlock = ModuleManager.getModule(NoKeyBlock.class);
-
-		if (!noKeyBlock.isEnabled()) {
-			return chr != 167 && chr >= ' ' && chr != 127;
-		}
-
-		return (noKeyBlock.getSetting(0).asToggle().getState() || chr != 167)
-				&& (noKeyBlock.getSetting(1).asToggle().getState() || chr >= ' ')
-				&& (noKeyBlock.getSetting(2).asToggle().getState() || chr != 127);
-	}
+//	@Overwrite
+//	public static boolean isValidChar(char chr) {
+//		Module noKeyBlock = ModuleManager.getModule(NoKeyBlock.class);
+//
+//		if (!noKeyBlock.isEnabled()) {
+//			return chr != 167 && chr >= ' ' && chr != 127;
+//		}
+//
+//		return (noKeyBlock.getSetting(0).asToggle().getState() || chr != 167)
+//				&& (noKeyBlock.getSetting(1).asToggle().getState() || chr >= ' ')
+//				&& (noKeyBlock.getSetting(2).asToggle().getState() || chr != 127);
+//	}
 }

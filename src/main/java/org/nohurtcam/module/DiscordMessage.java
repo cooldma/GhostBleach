@@ -1,7 +1,8 @@
 package org.nohurtcam.module;
 
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+//import net.fabricmc.fabric.api.networking.v1.PacketSender;
+//import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+//import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
@@ -23,25 +24,25 @@ public class DiscordMessage {
 //    }
     public void init() {
 //        BleachLogger.info("1");
-        ServerPlayConnectionEvents.JOIN.register(this::discordMessage);
+//        ServerPlayConnectionEvents.JOIN.register(this::discordMessage);
 //        BleachLogger.info("2");
     }
 
-    @BleachSubscribe
-    public void discordMessage(ServerPlayNetworkHandler handler, PacketSender sender, MinecraftServer server) {
-//        BleachLogger.info("3");
-        String title = "Alert" + "  -   " + mc.getSession().getUsername();
-        String message = "Has joined with Tessssstttting";
-
-        String serverName = mc.player.networkHandler.getConnection().getAddress().toString().toLowerCase();
-        if (serverName.contains("fewer") || serverName.contains("box")) {
-            message = "This user is on a blocked server: " + serverName;
-        } else {
-            message = "Ok server: " + serverName;
-        }
-
-        sendMessage(title, message);
-    }
+//    @BleachSubscribe
+//    public void discordMessage(ServerPlayNetworkHandler handler, PacketSender sender, MinecraftServer server) {
+////        BleachLogger.info("3");
+//        String title = "Alert" + "  -   " + mc.getSession().getUsername();
+//        String message = "Has joined with Tessssstttting";
+//
+//        String serverName = mc.player.networkHandler.getConnection().getAddress().toString().toLowerCase();
+//        if (serverName.contains("fewer") || serverName.contains("box")) {
+//            message = "This user is on a blocked server: " + serverName;
+//        } else {
+//            message = "Ok server: " + serverName;
+//        }
+//
+//        sendMessage(title, message);
+//    }
 
     public static void sendMessage(String title, String message) {
         ///////////////////////////////////////////////
