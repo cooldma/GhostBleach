@@ -1,31 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "lithium",
-  "version": "${version}",
-  "name": "Lithium",
-  "description": "Lithium is a free and open-source optimization mod for Minecraft which makes a wide range of performance improvements to the game.",
+  "id": "nohurtcam",
+  "version": "1",
+  "name": "NoHurtCam",
+  "description": "Removes the damage screenshake",
   "authors": [
-    "JellySquid",
-    "2No2Name"
+    "UltraBlackLinux"
   ],
   "contact": {
-    "homepage": "https://jellysquid.me/projects/",
-    "sources": "https://github.com/CaffeineMC/lithium-fabric",
-    "issues": "https://github.com/CaffeineMC/lithium-fabric/issues"
+    "homepage": "https://github.com/UltraBlackLinux/noHurtCam",
+    "issues": "https://github.com/UltraBlackLinux/noHurtCam/issues"
   },
-  "license": "LGPL-3.0-only",
-  "icon": "assets/bleachhack/icon.png",
+  "license": "MIT",
+  "icon": "assets/nohurtcam/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.bleachhack.BleachHack"
+      "org.nohurtcam.NoHurtCam"
     ]
   },
   "mixins": [
-    "bleachhack.mixins.json"
+    "nohurtcam.mixins.json"
   ],
-  "accessWidener" : "bleachhack.accesswidener",
+  "accessWidener" : "nohurtcam.accesswidener",
   "depends": {
     "minecraft": ">=1.19.1",
     "fabricloader": ">=0.13.3"

@@ -11,7 +11,7 @@ version = project.mod_version
 group = project.maven_group
 
 loom {
-	accessWidenerPath = file("src/main/resources/bleachhack.accesswidener")
+	accessWidenerPath = file("src/main/resources/nohurtcam.accesswidener")
 }
 
 repositories {
@@ -38,6 +38,8 @@ dependencies {
 	// }
 	// include(modImplementation("com.kohlschutter.junixsocket:junixsocket-common:2.2.1"))
 	// include(modImplementation("com.kohlschutter.junixsocket:junixsocket-native-common:2.2.1"))
+
+	include(modImplementation("net.fabricmc.fabric-api:fabric-networking-api-v1:1.2.9+f84bf2d9db"))
 }
 
 processResources {
