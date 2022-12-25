@@ -22,7 +22,6 @@ import java.util.concurrent.CompletableFuture;
 import org.lithium.eventbus.BleachEventBus;
 import org.lithium.eventbus.handler.InexactEventHandler;
 import org.lithium.gui.clickgui.ModuleClickGuiScreen;
-import org.lithium.module.DiscordMessage;
 import org.lithium.module.ModuleManager;
 import org.lithium.setting.option.Option;
 import org.lithium.util.BleachLogger;
@@ -33,8 +32,6 @@ import org.lithium.util.io.BleachFileHelper;
 import org.lithium.util.io.BleachFileMang;
 import org.lithium.util.io.BleachJsonHelper;
 import org.lithium.util.io.BleachOnlineMang;
-
-//import static org.bleachhack.module.DiscordMessage.sendDiscordMessage;
 
 public class Lithium implements ModInitializer {
 
@@ -56,8 +53,6 @@ public class Lithium implements ModInitializer {
 	public static Lithium getInstance() {
 		return instance;
 	}
-
-	private DiscordMessage discordMessage;
 
 	public Lithium() {
 		if (instance != null) {
@@ -101,9 +96,6 @@ public class Lithium implements ModInitializer {
 		}
 
 //		BleachLogger.logger.log(Level.INFO, "Loaded Lithium (Phase 1) in %d ms.", System.currentTimeMillis() - initStartTime);
-
-		discordMessage = new DiscordMessage();
-		discordMessage.init();
 
 
 	}

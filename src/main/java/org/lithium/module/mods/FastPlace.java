@@ -23,16 +23,15 @@ import com.google.common.collect.Sets;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
-public class FastUse extends Module {
+public class FastPlace extends Module {
 
 	private static final Set<Item> THROWABLE = Sets.newHashSet(
 			Items.SNOWBALL, Items.EGG, Items.EXPERIENCE_BOTTLE,
 			Items.ENDER_EYE, Items.ENDER_PEARL, Items.SPLASH_POTION, Items.LINGERING_POTION);
 
-	public FastUse() {
-		super("FastUse", KEY_UNBOUND, ModuleCategory.PLAYER, "Allows you to use items faster.",
-				new SettingMode("Mode", "Single", "Multi").withDesc("Whether to throw once per tick or multiple times."),
-				new SettingSlider("Multi", 1, 100, 20, 0).withDesc("How many items to use per tick if on multi mode."),
+	public FastPlace() {
+		super("FastPlace", KEY_UNBOUND, ModuleCategory.PLAYER, "Place blocks faster (modified from FastUse)",
+				new SettingMode("Mode", "Single").withDesc("Whether to throw once per tick or multiple times."),
 				new SettingToggle("Throwables Only", true).withDesc("Only uses throwables.").withChildren(
 						new SettingToggle("XP Only", false).withDesc("Only uses XP bottles.")));
 	}

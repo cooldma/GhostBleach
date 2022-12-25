@@ -11,7 +11,6 @@ package org.lithium.module.mods;
 import org.lithium.event.events.EventPacket;
 import org.lithium.event.events.EventTick;
 import org.lithium.eventbus.BleachSubscribe;
-//import org.bleachhack.module.DiscordMessage;
 import org.lithium.module.Module;
 import org.lithium.module.ModuleCategory;
 import org.lithium.setting.module.SettingMode;

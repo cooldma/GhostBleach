@@ -19,7 +19,7 @@ public class BetterCamera extends Module {
 		super("BetterCamera", KEY_UNBOUND, ModuleCategory.RENDER, "Improves the 3rd person camera.",
 				new SettingToggle("CameraClip", true).withDesc("Makes the camera clip into walls."),
 				new SettingToggle("Distance", true).withDesc("Sets a custom camera distance.").withChildren(
-						new SettingSlider("Distance", 0.5, 15, 4, 1).withDesc("The desired camera distance.")));
+						new SettingSlider("Distance", 0.5, 150, 4, 0).withDesc("The desired camera distance.")));
 	}
 
 	// Logic handled in MixinCamera::clipToSpace

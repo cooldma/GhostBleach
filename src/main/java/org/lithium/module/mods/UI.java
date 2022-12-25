@@ -201,7 +201,7 @@ public class UI extends Module {
 			if (watermarkMode == 0) {
 				moduleListText.add(0, Lithium.watermark.getText().append(Text.literal(" " + Lithium.VERSION).styled(s -> s.withColor(TextColor.fromRgb(0xf0f0f0)))));
 			} else {
-				moduleListText.add(0, Text.literal("\u00a7a> Lithium " + Lithium.VERSION));
+				moduleListText.add(0, Text.literal("\u00a7a> Ghost Bleach " + Lithium.VERSION));
 			}
 		}
 
