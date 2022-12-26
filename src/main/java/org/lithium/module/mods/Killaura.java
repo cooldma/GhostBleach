@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import net.minecraft.client.MinecraftClient;
 import org.lithium.event.events.EventTick;
 import org.lithium.eventbus.BleachSubscribe;
 import org.lithium.module.Module;
@@ -39,8 +40,16 @@ import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket.Mode;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 
 public class Killaura extends Module {
+
+	public void makePlayerLeftClick(ServerPlayerEntity player) {
+		Vec3d pos = new Vec3d(mc.player.getPos().getX(),mc.player.getPos().getY(),mc.player.getPos().getZ());
+		player.interactAt(player, pos, player.getActiveHand());
+	}
 
 	private int delay = 0;
 
