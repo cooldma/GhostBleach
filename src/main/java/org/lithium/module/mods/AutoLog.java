@@ -95,7 +95,7 @@ public class AutoLog extends Module {
 
 		if (getSetting(1).asToggle().getState() && !hasTotem) {
 			for (PlayerEntity player: mc.world.getPlayers()) {
-				if ((!getSetting(1).asToggle().getChild(0).asToggle().getState() && Lithium.friendMang.has(player))
+				if ((!getSetting(1).asToggle().getChild(0).asToggle().getState())
 						|| player == mc.player) {
 					continue;
 				}
@@ -123,7 +123,7 @@ public class AutoLog extends Module {
 
 			for (PlayerEntity player: mc.world.getPlayers()) {
 				if (!EntityUtils.isOtherServerPlayer(player)
-						|| (!getSetting(3).asToggle().getChild(1).asToggle().getState() && Lithium.friendMang.has(player))) {
+						|| (!getSetting(3).asToggle().getChild(1).asToggle().getState())) {
 					continue;
 				}
 

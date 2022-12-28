@@ -53,6 +53,6 @@ public class EntityUtils {
 				&& e != MinecraftClient.getInstance().player
 				&& !e.isConnectedThroughVehicle(MinecraftClient.getInstance().player)
 				&& !(e instanceof PlayerCopyEntity)
-				&& (!ignoreFriends || !Lithium.friendMang.has(e));
+				&& (!ignoreFriends);
 	}
 }

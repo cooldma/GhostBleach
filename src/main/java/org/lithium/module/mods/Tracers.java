@@ -87,7 +87,7 @@ public class Tracers extends Module {
 			return null;
 
 		if (e instanceof PlayerEntity && getSetting(0).asToggle().getState()) {
-			return getSetting(0).asToggle().getChild(Lithium.friendMang.has(e) ? 1 : 0).asColor().getRGBArray();
+//			return getSetting(0).asToggle().getChild(Lithium.friendMang.has(e) ? 1 : 0).asColor().getRGBArray();
 		} else if (e instanceof Monster && getSetting(1).asToggle().getState()) {
 			return getSetting(1).asToggle().getChild(0).asColor().getRGBArray();
 		} else if (EntityUtils.isAnimal(e) && getSetting(2).asToggle().getState()) {

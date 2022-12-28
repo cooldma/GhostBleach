@@ -56,7 +56,6 @@ public class Module {
 
 	public void onEnable(boolean inWorld) {
 		BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
-
 		subscribed = Lithium.eventBus.subscribe(this);
 	}
 
@@ -90,7 +89,6 @@ public class Module {
 
 	public void setKey(int key) {
 		this.key.setValue(key);
-
 		BleachFileHelper.SCHEDULE_SAVE_MODULES.set(true);
 	}
 

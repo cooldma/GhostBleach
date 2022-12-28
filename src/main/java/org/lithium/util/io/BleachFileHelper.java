@@ -40,7 +40,7 @@ public class BleachFileHelper {
 
 	public static AtomicBoolean SCHEDULE_SAVE_MODULES = new AtomicBoolean();
 	public static AtomicBoolean SCHEDULE_SAVE_OPTIONS = new AtomicBoolean();
-	public static AtomicBoolean SCHEDULE_SAVE_FRIENDS = new AtomicBoolean();
+//	public static AtomicBoolean SCHEDULE_SAVE_FRIENDS = new AtomicBoolean();
 	public static AtomicBoolean SCHEDULE_SAVE_CLICKGUI = new AtomicBoolean();
 	public static AtomicBoolean SCHEDULE_SAVE_UI = new AtomicBoolean();
 
@@ -52,7 +52,7 @@ public class BleachFileHelper {
 			if (SCHEDULE_SAVE_MODULES.getAndSet(false)) saveModules();
 			if (SCHEDULE_SAVE_OPTIONS.getAndSet(false)) saveOptions();
 			if (SCHEDULE_SAVE_CLICKGUI.getAndSet(false)) saveClickGui();
-			if (SCHEDULE_SAVE_FRIENDS.getAndSet(false)) saveFriends();
+//			if (SCHEDULE_SAVE_FRIENDS.getAndSet(false)) saveFriends();
 			if (SCHEDULE_SAVE_UI.getAndSet(false)) saveUI();
 		}, 0, 5, TimeUnit.SECONDS);
 	}
@@ -63,6 +63,7 @@ public class BleachFileHelper {
 	}
 
 	public static void saveModules() {
+
 		JsonObject json = new JsonObject();
 
 		for (Module mod : ModuleManager.getModules()) {
@@ -273,18 +274,18 @@ public class BleachFileHelper {
 		}
 	}
 
-	public static void readFriends() {
-		Lithium.friendMang.addAll(BleachFileMang.readFileLines("friends.txt"));
-	}
+//	public static void readFriends() {
+//		Lithium.friendMang.addAll(BleachFileMang.readFileLines("friends.txt"));
+//	}
 
-	public static void saveFriends() {
-		String toWrite = "";
-		for (String s : Lithium.friendMang.getFriends())
-			toWrite += s + "\n";
-
-		BleachFileMang.createEmptyFile("friends.txt");
-		BleachFileMang.appendFile("friends.txt", toWrite);
-	}
+//	public static void saveFriends() {
+//		String toWrite = "";
+//		for (String s : Lithium.friendMang.getFriends())
+//			toWrite += s + "\n";
+//
+//		BleachFileMang.createEmptyFile("friends.txt");
+//		BleachFileMang.appendFile("friends.txt", toWrite);
+//	}
 
 	public static JsonElement readMiscSetting(String key) {
 		JsonElement element = BleachJsonHelper.readJsonElement("misc.json", key);

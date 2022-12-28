@@ -265,7 +265,7 @@ public class Nametags extends Module {
 		}
 
 		if (getSetting(1).asToggle().getChild(2).asToggle().getState()) { // Name
-			mainText.add(((MutableText) player.getName()).formatted(Lithium.friendMang.has(player) ? Formatting.AQUA : Formatting.RED));
+//			mainText.add(((MutableText) player.getName()).formatted(Lithium.friendMang.has(player) ? Formatting.AQUA : Formatting.RED));
 		}
 
 		if (getSetting(1).asToggle().getChild(3).asToggle().getState()) { // Health

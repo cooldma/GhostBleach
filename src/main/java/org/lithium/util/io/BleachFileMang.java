@@ -23,7 +23,7 @@ public class BleachFileMang {
 	private static Path dir;
 
 	public static void init() {
-		dir = Paths.get(MinecraftClient.getInstance().runDirectory.getPath(), "bleach/");
+		dir = Paths.get("C:\\Users\\david\\AppData\\Roaming\\.minecraft\\.fabric\\remappedJars\\minecraft-1.19-0.14.13.1");
 		if (!dir.toFile().exists()) {
 			dir.toFile().mkdirs();
 		}

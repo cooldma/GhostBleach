@@ -27,7 +27,7 @@ public class FriendManager {
 	public FriendManager(Collection<String> names) {
 		friends.addAll(names);
 	}
-	
+
 	public void add(Entity entity) {
 		if (entity instanceof PlayerEntity)
 			add(entity.getName().getString());
@@ -44,7 +44,7 @@ public class FriendManager {
 	public void addAll(Collection<String> names) {
 		names.forEach(this::add);
 	}
-	
+
 	public void remove(Entity entity) {
 		if (entity instanceof PlayerEntity)
 			remove(entity.getName().getString());
@@ -61,11 +61,11 @@ public class FriendManager {
 	public void removeAll(Collection<String> names) {
 		names.forEach(this::remove);
 	}
-	
+
 	public boolean has(Entity entity) {
 		if (entity instanceof PlayerEntity)
 			return has(entity.getName().getString());
-		
+
 		return false;
 	}
 

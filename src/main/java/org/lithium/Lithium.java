@@ -26,7 +26,6 @@ import org.lithium.module.ModuleManager;
 import org.lithium.setting.option.Option;
 import org.lithium.util.BleachLogger;
 import org.lithium.util.BleachPlayerManager;
-import org.lithium.util.FriendManager;
 import org.lithium.util.Watermark;
 import org.lithium.util.io.BleachFileHelper;
 import org.lithium.util.io.BleachFileMang;
@@ -42,18 +41,15 @@ public class Lithium implements ModInitializer {
 	public static Watermark watermark;
 
 	public static BleachEventBus eventBus;
-
-	public static FriendManager friendMang;
 	public static BleachPlayerManager playerMang;
 
 	private static CompletableFuture<JsonObject> updateJson;
 
-	//private BleachFileMang bleachFileManager;
+//	private BleachFileMang bleachFileManager;
 
 	public static Lithium getInstance() {
 		return instance;
 	}
-
 	public Lithium() {
 		if (instance != null) {
 			throw new RuntimeException("A Lithium instance already exists.");
@@ -69,17 +65,13 @@ public class Lithium implements ModInitializer {
 		instance = this;
 		watermark = new Watermark();
 		eventBus = new BleachEventBus(new InexactEventHandler("bleachhack"), BleachLogger.logger);
-
-		friendMang = new FriendManager();
 		playerMang = new BleachPlayerManager();
 
 		//this.eventBus = new EventBus();
 		//this.bleachFileManager = new BleachFileMang();
-
 		BleachFileMang.init();
 
 		BleachFileHelper.readOptions();
-		BleachFileHelper.readFriends();
 
 		if (Option.PLAYERLIST_SHOW_AS_BH_USER.getValue()) {
 			playerMang.startPinger();
@@ -92,10 +84,10 @@ public class Lithium implements ModInitializer {
 
 		JsonElement mainMenu = BleachFileHelper.readMiscSetting("customTitleScreen");
 		if (mainMenu != null && !mainMenu.getAsBoolean()) {
-//			BleachTitleScreen.customTitleScreen = false;
+			//			BleachTitleScreen.customTitleScreen = false;
 		}
 
-//		BleachLogger.logger.log(Level.INFO, "Loaded Lithium (Phase 1) in %d ms.", System.currentTimeMillis() - initStartTime);
+		//		BleachLogger.logger.log(Level.INFO, "Loaded Lithium (Phase 1) in %d ms.", System.currentTimeMillis() - initStartTime);
 
 
 	}
@@ -104,7 +96,6 @@ public class Lithium implements ModInitializer {
 	// Called after most of the game has been initialized in MixinMinecraftClient so all game resources can be accessed
 	public void postInit() {
 		long initStartTime = System.currentTimeMillis();
-
 		ModuleManager.loadModules(this.getClass().getClassLoader().getResourceAsStream("lithium.modules.json"));
 		BleachFileHelper.readModules();
 
@@ -113,20 +104,13 @@ public class Lithium implements ModInitializer {
 		BleachFileHelper.readClickGui();
 		BleachFileHelper.readUI();
 
-//		CommandManager.loadCommands(this.getClass().getClassLoader().getResourceAsStream("lithium.commands.json"));
-//		CommandSuggestor.start();
+		//		CommandManager.loadCommands(this.getClass().getClassLoader().getResourceAsStream("lithium.commands.json"));
+		//		CommandSuggestor.start();
 
 		BleachFileHelper.startSavingExecutor();
+		ModuleManager.getModule("Dev").setEnabled(true);
 
 //		BleachLogger.logger.log(Level.INFO, "Loaded Lithium (Phase 2) in %d ms.", System.currentTimeMillis() - initStartTime);
-		ModuleManager.getModule("Dev").setEnabled(true);
-	}
 
-	public static JsonObject getUpdateJson() {
-		try {
-			return updateJson.get();
-		} catch (Exception e) {
-			return null;
-		}
 	}
 }

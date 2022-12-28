@@ -25,8 +25,8 @@ public class Watermark {
 
 	public void reset(boolean strings, boolean colors) {
 		if (strings) {
-			text1 = "Bleach";
-			text2 = "Hack";
+			text1 = "Ghost";
+			text2 = "Bleach";
 		}
 
 		if (colors) {
