@@ -1,31 +1,30 @@
 {
   "schemaVersion": 1,
-  "id": "lithium",
+  "id": "purpurclient",
   "version": "${version}",
-  "name": "Lithium",
-  "description": "Lithium is a free and open-source optimization mod for Minecraft which makes a wide range of performance improvements to the game.",
+  "name": "Purpur Client",
+  "description": "Fixes client related issues",
   "authors": [
-    "JellySquid",
-    "2No2Name"
+    "BillyGalbreath"
   ],
   "contact": {
-    "homepage": "https://jellysquid.me/projects/",
-    "sources": "https://github.com/CaffeineMC/lithium-fabric",
-    "issues": "https://github.com/CaffeineMC/lithium-fabric/issues"
+    "homepage": "https://purpurmc.org/",
+    "sources": "https://github.com/PurpurMC/PurpurClient",
+    "issues": "https://github.com/PurpurMC/PurpurClient/issues"
   },
-  "license": "LGPL-3.0-only",
-  "icon": "assets/lithium/icon.png",
+  "license": "MIT",
+  "icon": "assets/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.lithium.Lithium"
+      "org.purpurclient.PurpurClient"
     ]
   },
   "mixins": [
-    "lithium.mixins.json"
+    "purpurclient.mixins.json"
   ],
-  "accessWidener" : "lithium.accesswidener",
+  "accessWidener" : "purpurclient.accesswidener",
   "depends": {
     "minecraft": ">=1.19.1",
     "fabricloader": ">=0.13.3"
