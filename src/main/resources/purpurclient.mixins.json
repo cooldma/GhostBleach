@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "org.purpurclient.mixin",
+  "package": "org.purpurmc.purpur.client.mixin",
   "compatibilityLevel": "JAVA_16",
   "client": [
     "AccessorChatScreen",

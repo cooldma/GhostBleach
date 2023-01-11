@@ -17,7 +17,7 @@ compileJava {
 }
 
 loom {
-	accessWidenerPath = file("src/main/resources/purpurclient.accesswidener")
+	accessWidenerPath = file("src/main/resources/purpurmc.accesswidener")
 }
 
 repositories {
@@ -40,7 +40,7 @@ dependencies {
 //	include(modImplementation("com.github.fzakaria:ascii85:1.2"))
 
 	// include(modImplementation("com.github.BleachDrinker420:DiscordIPC:9957fc8114")) {
-    //    exclude group: 'com.google.code.gson', module: 'gson'
+    //    exclude group: 'com.google.code.gson', network: 'gson'
 	// }
 	// include(modImplementation("com.kohlschutter.junixsocket:junixsocket-common:2.2.1"))
 	// include(modImplementation("com.kohlschutter.junixsocket:junixsocket-native-common:2.2.1"))

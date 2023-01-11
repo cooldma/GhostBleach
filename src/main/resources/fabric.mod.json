@@ -13,18 +13,18 @@
     "issues": "https://github.com/PurpurMC/PurpurClient/issues"
   },
   "license": "MIT",
-  "icon": "assets/icon.png",
+  "icon": "assets/purpurclient/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.purpurclient.PurpurClient"
+      "org.purpurmc.purpur.client.PurpurClient"
     ]
   },
   "mixins": [
     "purpurclient.mixins.json"
   ],
-  "accessWidener" : "purpurclient.accesswidener",
+  "accessWidener" : "purpurmc.accesswidener",
   "depends": {
     "minecraft": ">=1.19.1",
     "fabricloader": ">=0.13.3"
