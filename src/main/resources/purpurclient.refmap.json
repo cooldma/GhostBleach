@@ -1,5 +1,5 @@
 {
-  "package": "org.purpurmc.purpur.client.module.mods",
+  "package": "org.purpurmc.purpur.client.network.mods",
   "modules": [
     "AirPlace",
     "AntiChunkBan",
