@@ -8,7 +8,6 @@
  */
 package org.bleachhack;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import net.fabricmc.api.ModInitializer;
@@ -18,11 +17,10 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.concurrent.CompletableFuture;
 
 import org.apache.logging.log4j.Level;
-import org.bleachhack.command.CommandManager;
-import org.bleachhack.command.CommandSuggestor;
+//import org.bleachhack.command.CommandManager;
+//import org.bleachhack.command.CommandSuggestor;
 import org.bleachhack.eventbus.BleachEventBus;
 import org.bleachhack.eventbus.handler.InexactEventHandler;
-import org.bleachhack.gui.BleachTitleScreen;
 import org.bleachhack.gui.clickgui.ModuleClickGuiScreen;
 import org.bleachhack.module.ModuleManager;
 import org.bleachhack.setting.option.Option;
@@ -57,9 +55,9 @@ public class BleachHack implements ModInitializer {
 	}
 
 	public BleachHack() {
-		if (instance != null) {
-			throw new RuntimeException("A BleachHack instance already exists.");
-		}
+//		if (instance != null) {
+//			throw new RuntimeException("A BleachHack instance already exists.");
+//		}
 	}
 
 	// Phase 1
@@ -83,21 +81,21 @@ public class BleachHack implements ModInitializer {
 		BleachFileHelper.readOptions();
 		BleachFileHelper.readFriends();
 
-		if (Option.PLAYERLIST_SHOW_AS_BH_USER.getValue()) {
-			playerMang.startPinger();
-		}
+//		if (Option.PLAYERLIST_SHOW_AS_BH_USER.getValue()) {
+//			playerMang.startPinger();
+//		}
 
-		if (Option.GENERAL_CHECK_FOR_UPDATES.getValue()) {
-			updateJson = BleachOnlineMang.getResourceAsync("update/" + SharedConstants.getGameVersion().getName().replace(' ', '_') + ".json", BodyHandlers.ofString())
-					.thenApply(s -> BleachJsonHelper.parseOrNull(s, JsonObject.class));
-		}
+//		if (Option.GENERAL_CHECK_FOR_UPDATES.getValue()) {
+//			updateJson = BleachOnlineMang.getResourceAsync("update/" + SharedConstants.getGameVersion().getName().replace(' ', '_') + ".json", BodyHandlers.ofString())
+//					.thenApply(s -> BleachJsonHelper.parseOrNull(s, JsonObject.class));
+//		}
 
-		JsonElement mainMenu = BleachFileHelper.readMiscSetting("customTitleScreen");
-		if (mainMenu != null && !mainMenu.getAsBoolean()) {
-			BleachTitleScreen.customTitleScreen = false;
-		}
+//		JsonElement mainMenu = BleachFileHelper.readMiscSetting("customTitleScreen");
+//		if (mainMenu != null && !mainMenu.getAsBoolean()) {
+//			BleachTitleScreen.customTitleScreen = false;
+//		}
 
-		BleachLogger.logger.log(Level.INFO, "Loaded BleachHack (Phase 1) in %d ms.", System.currentTimeMillis() - initStartTime);
+//		BleachLogger.logger.log(Level.INFO, "Loaded BleachHack (Phase 1) in %d ms.", System.currentTimeMillis() - initStartTime);
 	}
 
 	// Phase 2
@@ -113,12 +111,12 @@ public class BleachHack implements ModInitializer {
 		BleachFileHelper.readClickGui();
 		BleachFileHelper.readUI();
 
-		CommandManager.loadCommands(this.getClass().getClassLoader().getResourceAsStream("bleachhack.commands.json"));
-		CommandSuggestor.start();
+//		CommandManager.loadCommands(this.getClass().getClassLoader().getResourceAsStream("bleachhack.commands.json"));
+//		CommandSuggestor.start();
 
 		BleachFileHelper.startSavingExecutor();
 
-		BleachLogger.logger.log(Level.INFO, "Loaded BleachHack (Phase 2) in %d ms.", System.currentTimeMillis() - initStartTime);
+//		BleachLogger.logger.log(Level.INFO, "Loaded BleachHack (Phase 2) in %d ms.", System.currentTimeMillis() - initStartTime);
 	}
 
 	public static JsonObject getUpdateJson() {

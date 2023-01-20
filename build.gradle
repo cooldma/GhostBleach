@@ -31,7 +31,7 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	include(modImplementation("com.github.fzakaria:ascii85:1.2"))
+//	include(modImplementation("com.github.fzakaria:ascii85:1.2"))
 
 	// include(modImplementation("com.github.BleachDrinker420:DiscordIPC:9957fc8114")) {
     //    exclude group: 'com.google.code.gson', module: 'gson'

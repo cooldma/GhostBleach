@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.bleachhack.command.Command;
+//import org.bleachhack.command.Command;
 import org.bleachhack.event.events.EventTick;
 import org.bleachhack.eventbus.BleachSubscribe;
 import org.bleachhack.module.Module;
@@ -29,7 +29,7 @@ public class Spammer extends Module {
 	private int tickCount;
 
 	public Spammer() {
-		super("Spammer", KEY_UNBOUND, ModuleCategory.MISC, "Spams chat with messages you set (edit with " + Command.getPrefix() + "spammer).",
+		super("Spammer", KEY_UNBOUND, ModuleCategory.MISC, "Spams chat with messages you set (edit with spammer).",
 				new SettingMode("Read", "Random", "Order").withDesc("How to read the spammer file."),
 				new SettingSlider("Delay", 1, 120, 20, 0).withDesc("Delay between messages (in seconds)."));
 	}

@@ -35,7 +35,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameMode;
 import org.apache.commons.lang3.StringUtils;
 import org.bleachhack.BleachHack;
-import org.bleachhack.command.commands.CmdEntityStats;
+//import org.bleachhack.command.commands.CmdEntityStats;
 import org.bleachhack.event.events.EventEntityRender;
 import org.bleachhack.event.events.EventTick;
 import org.bleachhack.event.events.EventWorldRender;
@@ -327,9 +327,9 @@ public class Nametags extends Module {
 			if (getSetting(2).asToggle().getChild(6).asToggle().getState() && animal instanceof AbstractHorseEntity) {
 				AbstractHorseEntity he = (AbstractHorseEntity) animal;
 
-				lines.add(0, Text.literal(
-						CmdEntityStats.getSpeed(he) + " m/s" + Formatting.GRAY + " | " + Formatting.RESET + CmdEntityStats.getJumpHeight(he) + " Jump")
-						.formatted(Formatting.GREEN));
+//				lines.add(0, Text.literal(
+//						CmdEntityStats.getSpeed(he) + " m/s" + Formatting.GRAY + " | " + Formatting.RESET + CmdEntityStats.getJumpHeight(he) + " Jump")
+//						.formatted(Formatting.GREEN));
 			}
 		}
 		

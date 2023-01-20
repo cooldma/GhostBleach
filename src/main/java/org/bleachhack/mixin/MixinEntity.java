@@ -12,13 +12,24 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import org.bleachhack.BleachHack;
 import org.bleachhack.event.events.EventPlayerPushed;
+import org.bleachhack.module.ModuleManager;
+import org.bleachhack.module.mods.HitBoxes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(Entity.class)
 public class MixinEntity {
+
+	@Inject(method = "getTargetingMargin", at = @At("HEAD"), cancellable = true)
+	private void onGetTargetingMargin(CallbackInfoReturnable<Float> info) {
+		double v = ModuleManager.getModule(HitBoxes.class).getSetting(0).asSlider().getValue();
+		if(!ModuleManager.getModule(HitBoxes.class).isEnabled()) return;
+		info.setReturnValue((float) v);
+	}
 
 	@ModifyArgs(method = "pushAwayFrom", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;addVelocity(DDD)V"))
 	private void pushAwayFrom_addVelocity(Args args) {
