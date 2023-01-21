@@ -10,7 +10,6 @@ package org.bleachhack.mixin;
 
 import org.bleachhack.module.Module;
 import org.bleachhack.module.ModuleManager;
-import org.bleachhack.module.mods.BetterCamera;
 import org.bleachhack.module.mods.NoRender;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -36,22 +35,22 @@ public class MixinCamera {
 		}
 	}
 
-	@Inject(method = "clipToSpace", at = @At("HEAD"), cancellable = true)
-	private void onClipToSpace(double desiredCameraDistance, CallbackInfoReturnable<Double> info) {
-		if (bypassCameraClip) {
-			bypassCameraClip = false;
-		} else {
-			Module betterCamera = ModuleManager.getModule(BetterCamera.class);
-
-			if (betterCamera.isEnabled()) {
-				if (betterCamera.getSetting(0).asToggle().getState()) {
-					info.setReturnValue(betterCamera.getSetting(1).asToggle().getState()
-							? betterCamera.getSetting(1).asToggle().getChild(0).asSlider().getValue() : desiredCameraDistance);
-				} else if (betterCamera.getSetting(1).asToggle().getState()) {
-					bypassCameraClip = true;
-					info.setReturnValue(clipToSpace(betterCamera.getSetting(1).asToggle().getChild(0).asSlider().getValue()));
-				}
-			}
-		}
-	}
+//	@Inject(method = "clipToSpace", at = @At("HEAD"), cancellable = true)
+//	private void onClipToSpace(double desiredCameraDistance, CallbackInfoReturnable<Double> info) {
+//		if (bypassCameraClip) {
+//			bypassCameraClip = false;
+//		} else {
+//			Module betterCamera = ModuleManager.getModule(BetterCamera.class);
+//
+//			if (betterCamera.isEnabled()) {
+//				if (betterCamera.getSetting(0).asToggle().getState()) {
+//					info.setReturnValue(betterCamera.getSetting(1).asToggle().getState()
+//							? betterCamera.getSetting(1).asToggle().getChild(0).asSlider().getValue() : desiredCameraDistance);
+//				} else if (betterCamera.getSetting(1).asToggle().getState()) {
+//					bypassCameraClip = true;
+//					info.setReturnValue(clipToSpace(betterCamera.getSetting(1).asToggle().getChild(0).asSlider().getValue()));
+//				}
+//			}
+//		}
+//	}
 }

@@ -13,8 +13,6 @@ import org.bleachhack.event.events.EventClientMove;
 import org.bleachhack.event.events.EventSendMovementPackets;
 import org.bleachhack.event.events.EventSwingHand;
 import org.bleachhack.module.ModuleManager;
-import org.bleachhack.module.mods.BetterPortal;
-import org.bleachhack.module.mods.EntityControl;
 import org.bleachhack.module.mods.Freecam;
 import org.bleachhack.module.mods.NoSlow;
 import org.bleachhack.module.mods.SafeWalk;
@@ -96,23 +94,23 @@ public class MixinClientPlayerEntity extends AbstractClientPlayerEntity {
 		}
 	}
 
-	@Redirect(method = "updateNausea", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;closeHandledScreen()V", ordinal = 0),
-			require = 0 /* TODO: inertia compatibility */)
-	private void updateNausea_closeHandledScreen(ClientPlayerEntity player) {
-		if (!ModuleManager.getModule(BetterPortal.class).isEnabled()
-				|| !ModuleManager.getModule(BetterPortal.class).getSetting(0).asToggle().getState()) {
-			closeHandledScreen();
-		}
-	}
-
-	@Redirect(method = "updateNausea", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;setScreen(Lnet/minecraft/client/gui/screen/Screen;)V", ordinal = 0),
-			require = 0 /* TODO: inertia compatibility */)
-	private void updateNausea_setScreen(MinecraftClient client, Screen screen) {
-		if (!ModuleManager.getModule(BetterPortal.class).isEnabled()
-				|| !ModuleManager.getModule(BetterPortal.class).getSetting(0).asToggle().getState()) {
-			client.setScreen(screen);
-		}
-	}
+//	@Redirect(method = "updateNausea", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;closeHandledScreen()V", ordinal = 0),
+//			require = 0 /* TODO: inertia compatibility */)
+//	private void updateNausea_closeHandledScreen(ClientPlayerEntity player) {
+//		if (!ModuleManager.getModule(BetterPortal.class).isEnabled()
+//				|| !ModuleManager.getModule(BetterPortal.class).getSetting(0).asToggle().getState()) {
+//			closeHandledScreen();
+//		}
+//	}
+//
+//	@Redirect(method = "updateNausea", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;setScreen(Lnet/minecraft/client/gui/screen/Screen;)V", ordinal = 0),
+//			require = 0 /* TODO: inertia compatibility */)
+//	private void updateNausea_setScreen(MinecraftClient client, Screen screen) {
+//		if (!ModuleManager.getModule(BetterPortal.class).isEnabled()
+//				|| !ModuleManager.getModule(BetterPortal.class).getSetting(0).asToggle().getState()) {
+//			client.setScreen(screen);
+//		}
+//	}
 
 	@Overwrite
 	public void swingHand(Hand hand) {
@@ -134,9 +132,9 @@ public class MixinClientPlayerEntity extends AbstractClientPlayerEntity {
 						&& ModuleManager.getModule(Scaffold.class).getSetting(8).asToggle().getState());
 	}
 
-	@Overwrite
-	public float getMountJumpStrength() {
-		return ModuleManager.getModule(EntityControl.class).isEnabled()
-				&& ModuleManager.getModule(EntityControl.class).getSetting(2).asToggle().getState() ? 1F : mountJumpStrength;
-	}
+//	@Overwrite
+//	public float getMountJumpStrength() {
+//		return ModuleManager.getModule(EntityControl.class).isEnabled()
+//				&& ModuleManager.getModule(EntityControl.class).getSetting(2).asToggle().getState() ? 1F : mountJumpStrength;
+//	}
 }
