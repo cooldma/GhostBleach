@@ -19,13 +19,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.bleachhack.BleachHack"
+      "dev.lambdaurora.lambdynlights.LambDynLights"
     ]
   },
   "mixins": [
-    "bleachhack.mixins.json"
+    "lambdaurora.mixins.json"
   ],
-  "accessWidener" : "bleachhack.accesswidener",
+  "accessWidener" : "lambdaurora.accesswidener",
   "depends": {
     "minecraft": ">=1.19.1",
     "fabricloader": ">=0.13.3"
