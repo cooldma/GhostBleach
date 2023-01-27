@@ -39,7 +39,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameMode;
 import org.apache.commons.lang3.StringUtils;
-//import org.bleachhack.command.commands.CmdEntityStats;
+//import org.lambdynlights.command.commands.CmdEntityStats;
 import dev.lambdaurora.lambdynlights.event.events.EventEntityRender;
 import dev.lambdaurora.lambdynlights.event.events.EventTick;
 import dev.lambdaurora.lambdynlights.event.events.EventWorldRender;

@@ -1,22 +1,20 @@
 {
   "schemaVersion": 1,
-  "id": "bleachhack",
-  "version": "${version}",
-
-  "name": "BleachHack",
-  "description": "gamer obama utility mod",
+  "id": "lambdynlights",
+  "name": "LambDynamicLights",
+  "version": "2.2.0+1.19.2",
+  "description": "Adds dynamic lights to the game.",
   "authors": [
-    "Bleach"
+    "LambdAurora"
   ],
   "contact": {
-    "homepage": "https://bleachhack.org/",
-    "sources": "https://github.com/BleachDev/BleachHack"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/lambdynamiclights",
+    "sources": "https://github.com/LambdAurora/LambDynamicLights.git",
+    "issues": "https://github.com/LambdAurora/LambDynamicLights/issues"
   },
-
-  "license": "CC0-1.0",
-  "icon": "assets/bleachhack/icon.png",
-
-  "environment": "*",
+  "license": "MIT",
+  "icon": "assets/lambdynlights/icon.png",
+  "environment": "client",
   "entrypoints": {
     "main": [
       "dev.lambdaurora.lambdynlights.LambDynLights"

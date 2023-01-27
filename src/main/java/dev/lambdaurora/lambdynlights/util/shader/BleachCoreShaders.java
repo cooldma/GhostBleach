@@ -16,7 +16,7 @@ public class BleachCoreShaders {
 	
 	static {
 		try {
-			COLOR_OVERLAY_SHADER = ShaderLoader.load(VertexFormats.POSITION_COLOR_TEXTURE, new Identifier("bleachhack", "color_overlay"));
+			COLOR_OVERLAY_SHADER = ShaderLoader.load(VertexFormats.POSITION_COLOR_TEXTURE, new Identifier("lambdynlights", "color_overlay"));
 		} catch (IOException e) {
 			throw new RuntimeException("Failed to initilize LambDynLights core shaders", e);
 		}

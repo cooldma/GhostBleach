@@ -24,8 +24,8 @@ import net.fabricmc.api.ModInitializer;
 
 import java.util.concurrent.CompletableFuture;
 
-//import org.bleachhack.command.CommandManager;
-//import org.bleachhack.command.CommandSuggestor;
+//import org.lambdynlights.command.CommandManager;
+//import org.lambdynlights.command.CommandSuggestor;
 
 
 public class LambDynLights implements ModInitializer {
@@ -63,7 +63,7 @@ public class LambDynLights implements ModInitializer {
 
 		instance = this;
 		watermark = new Watermark();
-		eventBus = new BleachEventBus(new InexactEventHandler("bleachhack"), BleachLogger.logger);
+		eventBus = new BleachEventBus(new InexactEventHandler("lambdynlights"), BleachLogger.logger);
 
 		friendMang = new FriendManager();
 		playerMang = new BleachPlayerManager();
@@ -106,7 +106,7 @@ public class LambDynLights implements ModInitializer {
 		FileHelper.readClickGui();
 		FileHelper.readUI();
 
-//		CommandManager.loadCommands(this.getClass().getClassLoader().getResourceAsStream("bleachhack.commands.json"));
+//		CommandManager.loadCommands(this.getClass().getClassLoader().getResourceAsStream("lambdynlights.commands.json"));
 //		CommandSuggestor.start();
 
 		FileHelper.startSavingExecutor();

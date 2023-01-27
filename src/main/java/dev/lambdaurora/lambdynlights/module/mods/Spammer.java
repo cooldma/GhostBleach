@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-//import org.bleachhack.command.Command;
+//import org.lambdynlights.command.Command;
 import dev.lambdaurora.lambdynlights.eventbus.BleachSubscribe;
 import dev.lambdaurora.lambdynlights.setting.module.SettingMode;
 import dev.lambdaurora.lambdynlights.setting.module.SettingSlider;

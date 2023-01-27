@@ -8,7 +8,7 @@
  */
 package dev.lambdaurora.lambdynlights.module.mods;
 
-//import org.bleachhack.command.Command;
+//import org.lambdynlights.command.Command;
 import dev.lambdaurora.lambdynlights.eventbus.BleachSubscribe;
 import dev.lambdaurora.lambdynlights.setting.module.SettingMode;
 import dev.lambdaurora.lambdynlights.setting.module.SettingSlider;

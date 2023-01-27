@@ -9,7 +9,7 @@
 package dev.lambdaurora.lambdynlights.mixin;
 
 import dev.lambdaurora.lambdynlights.LambDynLights;
-//import org.bleachhack.command.Command;
+//import org.lambdynlights.command.Command;
 import dev.lambdaurora.lambdynlights.event.events.EventKeyPress;
 import dev.lambdaurora.lambdynlights.module.ModuleManager;
 import org.spongepowered.asm.mixin.Mixin;

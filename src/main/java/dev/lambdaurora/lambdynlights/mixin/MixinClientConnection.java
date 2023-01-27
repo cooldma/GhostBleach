@@ -9,8 +9,8 @@
 package dev.lambdaurora.lambdynlights.mixin;
 
 import dev.lambdaurora.lambdynlights.LambDynLights;
-//import org.bleachhack.command.Command;
-//import org.bleachhack.command.CommandManager;
+//import org.lambdynlights.command.Command;
+//import org.lambdynlights.command.CommandManager;
 import dev.lambdaurora.lambdynlights.event.events.EventPacket;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

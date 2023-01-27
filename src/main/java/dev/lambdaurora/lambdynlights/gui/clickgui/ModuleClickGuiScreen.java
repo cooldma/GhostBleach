@@ -20,7 +20,7 @@ import dev.lambdaurora.lambdynlights.module.ModuleManager;
 import dev.lambdaurora.lambdynlights.module.mods.ClickGui;
 import dev.lambdaurora.lambdynlights.util.io.FileHelper;
 import org.apache.commons.lang3.StringUtils;
-//import org.bleachhack.command.Command;
+//import org.lambdynlights.command.Command;
 import dev.lambdaurora.lambdynlights.gui.window.Window;
 
 import net.minecraft.client.gui.widget.TextFieldWidget;

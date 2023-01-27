@@ -18,6 +18,7 @@ import dev.lambdaurora.lambdynlights.util.shader.ShaderEffectWrapper;
 
 import com.google.gson.JsonSyntaxException;
 
+import dev.lambdaurora.lambdynlights.util.shader.ShaderLoader;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
@@ -54,7 +55,7 @@ public class BlockHighlight extends Module {
 
 		try {
 			shader = new ShaderEffectWrapper(
-					new ShaderEffect(mc.getTextureManager(), mc.getResourceManager(), mc.getFramebuffer(), new Identifier("bleachhack", "shaders/post/entity_outline.json")));
+					ShaderLoader.loadEffect(mc.getFramebuffer(), new Identifier("lambdynlights", "shaders/post/entity_outline.json")));
 
 			colorVertexer = new ColorVertexConsumerProvider(shader.getFramebuffer("main"), BleachCoreShaders::getColorOverlayShader);
 		} catch (JsonSyntaxException | IOException e) {

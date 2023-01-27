@@ -23,7 +23,7 @@ public class Panic extends Module {
         super.onEnable(inWorld);
 
         for (Module m : ModuleManager.getModules()) {
-//            m.setKey(KEY_UNBOUND);
+            m.setKey(KEY_UNBOUND);
             m.setEnabled(false);
             m.setName("");
             m.setDesc("");

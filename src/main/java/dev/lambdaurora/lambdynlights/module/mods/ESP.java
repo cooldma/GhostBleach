@@ -76,7 +76,7 @@ public class ESP extends Module {
 		
 		try {
 			shader = new ShaderEffectWrapper(
-					ShaderLoader.loadEffect(mc.getFramebuffer(), new Identifier("bleachhack", "shaders/post/entity_outline.json")));
+					ShaderLoader.loadEffect(mc.getFramebuffer(), new Identifier("lambdynlights", "shaders/post/entity_outline.json")));
 			
 			colorVertexer = new ColorVertexConsumerProvider(shader.getFramebuffer("main"), BleachCoreShaders::getColorOverlayShader);
 		} catch (JsonSyntaxException | IOException e) {

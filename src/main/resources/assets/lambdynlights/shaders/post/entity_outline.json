@@ -5,7 +5,7 @@
 	],
 	"passes": [
 		{
-			"name": "bleachhack:entity_outline",
+			"name": "lambdynlights:entity_outline",
 			"intarget": "main",
 			"outtarget": "swap"
 		},
