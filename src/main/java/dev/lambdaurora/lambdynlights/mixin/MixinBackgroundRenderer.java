@@ -8,8 +8,8 @@
  */
 package dev.lambdaurora.lambdynlights.mixin;
 
-import dev.lambdaurora.lambdynlights.module.mods.NoRender;
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.ConfigWriter;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -27,7 +27,7 @@ public class MixinBackgroundRenderer {
 			"applyFog(Lnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/BackgroundRenderer$FogType;FZ)V"},
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z"))
 	private static boolean hasStatusEffect(LivingEntity entity, StatusEffect effect) {
-		if (effect == StatusEffects.BLINDNESS && ModuleManager.getModule(NoRender.class).isOverlayToggled(0)) {
+		if (effect == StatusEffects.BLINDNESS && NightConfigManager.getModule(ConfigWriter.class).isOverlayToggled(0)) {
 			return false;
 		}
 

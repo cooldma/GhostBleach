@@ -14,6 +14,10 @@ import net.minecraft.text.Text;
 
 public class Watermark {
 
+	public static String text_1 = "Sweat";
+	public static String text_2 = "Slapper";
+
+
 	private String text1;
 	private String text2;
 	private int color1;
@@ -25,8 +29,8 @@ public class Watermark {
 
 	public void reset(boolean strings, boolean colors) {
 		if (strings) {
-			text1 = "Sweat";
-			text2 = "Slapper";
+			text1 = text_1;
+			text2 = text_2;
 		}
 
 		if (colors) {

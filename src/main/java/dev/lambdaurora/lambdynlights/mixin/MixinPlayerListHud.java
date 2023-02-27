@@ -1,18 +1,16 @@
 package dev.lambdaurora.lambdynlights.mixin;
 
 import dev.lambdaurora.lambdynlights.LambDynLights;
-import dev.lambdaurora.lambdynlights.setting.option.Option;
+import dev.lambdaurora.lambdynlights.api.option.Option;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.PlayerListHud;
 import net.minecraft.client.network.PlayerListEntry;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -29,14 +27,14 @@ public class MixinPlayerListHud {
 		}
 	}
 
-	@Inject(method = "renderLatencyIcon", at = @At("RETURN"))
-	private void renderLatencyIcon(MatrixStack matrices, int width, int x, int y, PlayerListEntry entry, CallbackInfo callback) {
-		if (Option.PLAYERLIST_SHOW_BH_USERS.getValue() && LambDynLights.playerMang.getPlayers().contains(entry.getProfile().getId())) {
-			matrices.push();
-			matrices.translate(x + width - 21, y + 1.5, 0);
-			matrices.scale(0.67f, 0.7f, 1f);
-			client.textRenderer.drawWithShadow(matrices, LambDynLights.watermark.getShortText(), 0, 0, -1);
-			matrices.pop();
-		}
-	}
+//	@Inject(method = "renderLatencyIcon", at = @At("RETURN"))
+//	private void renderLatencyIcon(MatrixStack matrices, int width, int x, int y, PlayerListEntry entry, CallbackInfo callback) {
+//		if (Option.PLAYERLIST_SHOW_BH_USERS.getValue() && LambDynLights.playerMang.getPlayers().contains(entry.getProfile().getId())) {
+//			matrices.push();
+//			matrices.translate(x + width - 21, y + 1.5, 0);
+//			matrices.scale(0.67f, 0.7f, 1f);
+//			client.textRenderer.drawWithShadow(matrices, LambDynLights.watermark.getShortText(), 0, 0, -1);
+//			matrices.pop();
+//		}
+//	}
 }

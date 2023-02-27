@@ -9,11 +9,11 @@
 package dev.lambdaurora.lambdynlights.mixin;
 
 import dev.lambdaurora.lambdynlights.LambDynLights;
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
-import dev.lambdaurora.lambdynlights.module.mods.Freecam;
-import dev.lambdaurora.lambdynlights.module.mods.NoSlow;
-import dev.lambdaurora.lambdynlights.module.mods.SafeWalk;
-import dev.lambdaurora.lambdynlights.module.mods.Scaffold;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.WritingMode;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.ConfigParser;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.WriteAsyncFileConfig;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.SimpleCommentedFileConfig;
 import dev.lambdaurora.lambdynlights.event.events.EventClientMove;
 import dev.lambdaurora.lambdynlights.event.events.EventSendMovementPackets;
 import dev.lambdaurora.lambdynlights.event.events.EventSwingHand;
@@ -64,7 +64,7 @@ public class MixinClientPlayerEntity extends AbstractClientPlayerEntity {
 	@Redirect(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;isUsingItem()Z"),
 			require = 0 /* TODO: meteor compatibility */)
 	private boolean tickMovement_isUsingItem(ClientPlayerEntity player) {
-		NoSlow noSlow = ModuleManager.getModule(NoSlow.class);
+		ConfigParser noSlow = NightConfigManager.getModule(ConfigParser.class);
 		if (noSlow.isEnabled() && noSlow.getSetting(5).asToggle().getState())
 			return false;
 
@@ -88,7 +88,7 @@ public class MixinClientPlayerEntity extends AbstractClientPlayerEntity {
 
 	@Inject(method = "pushOutOfBlocks", at = @At("HEAD"), cancellable = true)
 	private void pushOutOfBlocks(double x, double d, CallbackInfo ci) {
-		if (ModuleManager.getModule(Freecam.class).isEnabled()) {
+		if (NightConfigManager.getModule(WritingMode.class).isEnabled()) {
 			ci.cancel();
 		}
 	}
@@ -96,8 +96,8 @@ public class MixinClientPlayerEntity extends AbstractClientPlayerEntity {
 //	@Redirect(method = "updateNausea", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;closeHandledScreen()V", ordinal = 0),
 //			require = 0 /* TODO: inertia compatibility */)
 //	private void updateNausea_closeHandledScreen(ClientPlayerEntity player) {
-//		if (!ModuleManager.getModule(BetterPortal.class).isEnabled()
-//				|| !ModuleManager.getModule(BetterPortal.class).getSetting(0).asToggle().getState()) {
+//		if (!NightConfigManager.getModule(BetterPortal.class).isEnabled()
+//				|| !NightConfigManager.getModule(BetterPortal.class).getSetting(0).asToggle().getState()) {
 //			closeHandledScreen();
 //		}
 //	}
@@ -105,8 +105,8 @@ public class MixinClientPlayerEntity extends AbstractClientPlayerEntity {
 //	@Redirect(method = "updateNausea", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;setScreen(Lnet/minecraft/client/gui/screen/Screen;)V", ordinal = 0),
 //			require = 0 /* TODO: inertia compatibility */)
 //	private void updateNausea_setScreen(MinecraftClient client, Screen screen) {
-//		if (!ModuleManager.getModule(BetterPortal.class).isEnabled()
-//				|| !ModuleManager.getModule(BetterPortal.class).getSetting(0).asToggle().getState()) {
+//		if (!NightConfigManager.getModule(BetterPortal.class).isEnabled()
+//				|| !NightConfigManager.getModule(BetterPortal.class).getSetting(0).asToggle().getState()) {
 //			client.setScreen(screen);
 //		}
 //	}
@@ -126,14 +126,14 @@ public class MixinClientPlayerEntity extends AbstractClientPlayerEntity {
 	@Override
 	protected boolean clipAtLedge() {
 		return super.clipAtLedge()
-				|| ModuleManager.getModule(SafeWalk.class).isEnabled()
-				|| (ModuleManager.getModule(Scaffold.class).isEnabled()
-						&& ModuleManager.getModule(Scaffold.class).getSetting(8).asToggle().getState());
+				|| NightConfigManager.getModule(WriteAsyncFileConfig.class).isEnabled()
+				|| (NightConfigManager.getModule(SimpleCommentedFileConfig.class).isEnabled()
+						&& NightConfigManager.getModule(SimpleCommentedFileConfig.class).getSetting(8).asToggle().getState());
 	}
 
 //	@Overwrite
 //	public float getMountJumpStrength() {
-//		return ModuleManager.getModule(EntityControl.class).isEnabled()
-//				&& ModuleManager.getModule(EntityControl.class).getSetting(2).asToggle().getState() ? 1F : mountJumpStrength;
+//		return NightConfigManager.getModule(EntityControl.class).isEnabled()
+//				&& NightConfigManager.getModule(EntityControl.class).getSetting(2).asToggle().getState() ? 1F : mountJumpStrength;
 //	}
 }

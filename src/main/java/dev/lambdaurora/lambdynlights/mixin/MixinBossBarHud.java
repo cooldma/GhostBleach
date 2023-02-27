@@ -8,8 +8,8 @@
  */
 package dev.lambdaurora.lambdynlights.mixin;
 
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
-import dev.lambdaurora.lambdynlights.module.mods.NoRender;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.ConfigWriter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -22,7 +22,7 @@ public class MixinBossBarHud {
 
 	@Inject(method = "render", at = @At("HEAD"), cancellable = true)
 	private void render(CallbackInfo info) {
-		if (ModuleManager.getModule(NoRender.class).isOverlayToggled(6)) {
+		if (NightConfigManager.getModule(ConfigWriter.class).isOverlayToggled(6)) {
 			info.cancel();
 		}
 	}

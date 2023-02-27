@@ -8,8 +8,8 @@
 // */
 //package org.lambdynlights.mixin;
 //
-//import module.dev.lambdaurora.Module;
-//import module.dev.lambdaurora.ModuleManager;
+//import item.dev.lambdaurora.NightConfig;
+//import item.dev.lambdaurora.NightConfigManager;
 //import org.spongepowered.asm.mixin.Mixin;
 //import org.spongepowered.asm.mixin.Overwrite;
 //
@@ -20,7 +20,7 @@
 //
 //	@Overwrite
 //	public static boolean isValidChar(char chr) {
-//		Module noKeyBlock = ModuleManager.getModule(NoKeyBlock.class);
+//		NightConfig noKeyBlock = NightConfigManager.getModule(NoKeyBlock.class);
 //
 //		if (!noKeyBlock.isEnabled()) {
 //			return chr != 167 && chr >= ' ' && chr != 127;

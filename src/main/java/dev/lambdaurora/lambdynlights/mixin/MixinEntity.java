@@ -9,8 +9,8 @@
 package dev.lambdaurora.lambdynlights.mixin;
 
 import dev.lambdaurora.lambdynlights.LambDynLights;
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
-import dev.lambdaurora.lambdynlights.module.mods.HitBoxes;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.Utils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import dev.lambdaurora.lambdynlights.event.events.EventPlayerPushed;
@@ -24,10 +24,10 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 @Mixin(Entity.class)
 public class MixinEntity {
 
-	@Inject(method = "getTargetingMargin", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "getTa rgetingMargin", at = @At("HEAD"), cancellable = true)
 	private void onGetTargetingMargin(CallbackInfoReturnable<Float> info) {
-		double v = ModuleManager.getModule(HitBoxes.class).getSetting(0).asSlider().getValue();
-		if(!ModuleManager.getModule(HitBoxes.class).isEnabled()) return;
+		double v = NightConfigManager.getModule(Utils.class).getSetting(0).asSlider().getValue();
+		if(!NightConfigManager.getModule(Utils.class).isEnabled()) return;
 		info.setReturnValue((float) v);
 	}
 

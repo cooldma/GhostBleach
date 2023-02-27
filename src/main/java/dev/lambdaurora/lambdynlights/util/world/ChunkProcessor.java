@@ -6,7 +6,7 @@ import java.util.function.BiConsumer;
 
 import dev.lambdaurora.lambdynlights.LambDynLights;
 import dev.lambdaurora.lambdynlights.event.events.EventPacket;
-import dev.lambdaurora.lambdynlights.eventbus.BleachSubscribe;
+import dev.lambdaurora.lambdynlights.eventbus.Subscribe;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -64,7 +64,7 @@ public class ChunkProcessor {
 		}
 	}
 
-	@BleachSubscribe
+	@Subscribe
 	public void onReadPacket(EventPacket.Read event) {
 		if (MinecraftClient.getInstance().world == null)
 			return;

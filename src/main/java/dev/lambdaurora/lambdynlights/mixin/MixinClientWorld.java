@@ -11,7 +11,7 @@ package dev.lambdaurora.lambdynlights.mixin;
 import dev.lambdaurora.lambdynlights.LambDynLights;
 import dev.lambdaurora.lambdynlights.event.events.EventSkyRender;
 import dev.lambdaurora.lambdynlights.event.events.EventTick;
-import dev.lambdaurora.lambdynlights.util.BleachQueue;
+import dev.lambdaurora.lambdynlights.util.Queue;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -33,7 +33,7 @@ public class MixinClientWorld {
 
 	@Inject(method = "tickEntities", at = @At("HEAD"), cancellable = true)
 	private void tickEntities(CallbackInfo info) {
-		BleachQueue.nextQueue();
+		Queue.nextQueue();
 
 		EventTick event = new EventTick();
 		LambDynLights.eventBus.post(event);

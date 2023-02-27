@@ -8,8 +8,8 @@
  */
 package dev.lambdaurora.lambdynlights.mixin;
 
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
-import dev.lambdaurora.lambdynlights.module.mods.NoRender;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.ConfigWriter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,14 +24,14 @@ public class MixinInGameOverlayRenderer {
 
 	@Inject(method = "renderFireOverlay", at = @At("HEAD"), cancellable = true)
 	private static void onRenderFireOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo ci) {
-		if (ModuleManager.getModule(NoRender.class).isOverlayToggled(1)) {
+		if (NightConfigManager.getModule(ConfigWriter.class).isOverlayToggled(1)) {
 			ci.cancel();
 		}
 	}
 
 	@Inject(method = "renderUnderwaterOverlay", at = @At("HEAD"), cancellable = true)
 	private static void onRenderUnderwaterOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo ci) {
-		if (ModuleManager.getModule(NoRender.class).isOverlayToggled(3)) {
+		if (NightConfigManager.getModule(ConfigWriter.class).isOverlayToggled(3)) {
 			ci.cancel();
 		}
 	}

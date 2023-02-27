@@ -8,8 +8,8 @@
  */
 package dev.lambdaurora.lambdynlights.mixin;
 
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
-import dev.lambdaurora.lambdynlights.module.mods.NoRender;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.ConfigWriter;
 import dev.lambdaurora.lambdynlights.LambDynLights;
 import dev.lambdaurora.lambdynlights.event.events.EventRenderShader;
 import org.spongepowered.asm.mixin.Mixin;
@@ -35,14 +35,14 @@ public class MixinGameRenderer {
 
 	@Inject(method = "bobViewWhenHurt", at = @At("HEAD"), cancellable = true)
 	private void onBobViewWhenHurt(MatrixStack matrixStack, float f, CallbackInfo ci) {
-		if (ModuleManager.getModule(NoRender.class).isOverlayToggled(2)) {
+		if (NightConfigManager.getModule(ConfigWriter.class).isOverlayToggled(2)) {
 			ci.cancel();
 		}
 	}
 
 	@Inject(method = "showFloatingItem", at = @At("HEAD"), cancellable = true)
 	private void showFloatingItem(ItemStack floatingItem, CallbackInfo ci) {
-		if (ModuleManager.getModule(NoRender.class).isWorldToggled(1) && floatingItem.getItem() == Items.TOTEM_OF_UNDYING) {
+		if (NightConfigManager.getModule(ConfigWriter.class).isWorldToggled(1) && floatingItem.getItem() == Items.TOTEM_OF_UNDYING) {
 			ci.cancel();
 		}
 	}
@@ -50,7 +50,7 @@ public class MixinGameRenderer {
 	@Redirect(method = "renderWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/math/MathHelper;lerp(FFF)F", ordinal = 0),
 			require = 0 /* TODO: meteor compatibility */)
 	private float nauseaWobble(float delta, float first, float second) {
-		if (ModuleManager.getModule(NoRender.class).isOverlayToggled(5)) {
+		if (NightConfigManager.getModule(ConfigWriter.class).isOverlayToggled(5)) {
 			return 0;
 		}
 

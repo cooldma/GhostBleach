@@ -21,7 +21,7 @@ import net.minecraft.resource.ResourcePack;
 import net.minecraft.util.Identifier;
 
 /**
- * A open resource manager that can get resources from Fabric mods using their namespace
+ * A open resource manager that can get resources from Fabric nightconfig using their namespace
  * or from a URL with the __url__ namespace and an encoded path.
  * 
  * USE WITH CAUTION!

@@ -3,8 +3,8 @@ package dev.lambdaurora.lambdynlights.mixin;
 import java.util.List;
 import java.util.zip.Inflater;
 
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
-import dev.lambdaurora.lambdynlights.module.mods.AntiChunkBan;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.SimpleConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,7 +25,7 @@ public class MixinPacketInflater {
 
 	@Inject(method = "decode", at = @At("HEAD"), cancellable = true)
 	private void decode(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf, List<Object> list, CallbackInfo info) throws Exception {
-		if (ModuleManager.getModule(AntiChunkBan.class).isEnabled()) {
+		if (NightConfigManager.getModule(SimpleConfig.class).isEnabled()) {
 			info.cancel();
 			if (byteBuf.readableBytes() != 0) {
 				PacketByteBuf packetByteBuf_1 = new PacketByteBuf(byteBuf);

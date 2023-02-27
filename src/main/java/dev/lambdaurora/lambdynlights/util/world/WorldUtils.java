@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import dev.lambdaurora.lambdynlights.setting.module.SettingRotate;
+import dev.lambdaurora.lambdynlights.api.item.DynamicLightsInitializerRotate;
 import dev.lambdaurora.lambdynlights.util.InventoryUtils;
 
 import com.google.common.collect.Sets;
@@ -136,7 +136,7 @@ public class WorldUtils {
 		return false;
 	}
 
-	public static boolean placeBlock(BlockPos pos, int slot, SettingRotate sr, boolean forceLegit, boolean airPlace, boolean swingHand) {
+	public static boolean placeBlock(BlockPos pos, int slot, DynamicLightsInitializerRotate sr, boolean forceLegit, boolean airPlace, boolean swingHand) {
 		return placeBlock(pos, slot, !sr.getState() ? 0 : sr.getRotateMode() + 1, forceLegit, airPlace, swingHand);
 	}
 
@@ -254,7 +254,7 @@ public class WorldUtils {
 		return true;
 	}
 
-	public static void facePosAuto(double x, double y, double z, SettingRotate sr) {
+	public static void facePosAuto(double x, double y, double z, DynamicLightsInitializerRotate sr) {
 		if (sr.getRotateMode() == 0) {
 			facePosPacket(x, y, z);
 		} else {

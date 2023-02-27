@@ -7,8 +7,8 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import dev.lambdaurora.lambdynlights.eventbus.BleachSubscribe;
-import dev.lambdaurora.lambdynlights.eventbus.BleachSubscriber;
+import dev.lambdaurora.lambdynlights.eventbus.Subscribe;
+import dev.lambdaurora.lambdynlights.eventbus.Subscriber;
 import org.apache.logging.log4j.Logger;
 import dev.lambdaurora.lambdynlights.event.Event;
 
@@ -18,7 +18,7 @@ import dev.lambdaurora.lambdynlights.event.Event;
 public class InexactEventHandler extends EventHandler {
 
 	// <Event Class, Subscribers>
-	private final Map<Class<?>, List<BleachSubscriber>> subscribers = new ConcurrentHashMap<>();
+	private final Map<Class<?>, List<Subscriber>> subscribers = new ConcurrentHashMap<>();
 
 	public InexactEventHandler(String id) {
 		super(id);
@@ -27,8 +27,8 @@ public class InexactEventHandler extends EventHandler {
 	public boolean subscribe(Object object) {
 		boolean added = false;
 		for (Method m: object.getClass().getDeclaredMethods()) {
-			if (m.isAnnotationPresent(BleachSubscribe.class) && m.getParameters().length != 0) {
-				subscribers.computeIfAbsent(m.getParameters()[0].getType(), k -> new CopyOnWriteArrayList<>()).add(new BleachSubscriber(object, m));
+			if (m.isAnnotationPresent(Subscribe.class) && m.getParameters().length != 0) {
+				subscribers.computeIfAbsent(m.getParameters()[0].getType(), k -> new CopyOnWriteArrayList<>()).add(new Subscriber(object, m));
 				added = true;
 			}
 		}
@@ -47,9 +47,9 @@ public class InexactEventHandler extends EventHandler {
 	}
 
 	public void post(Event event, Logger logger) {
-		for (Entry<Class<?>, List<BleachSubscriber>> entry: subscribers.entrySet()) {
+		for (Entry<Class<?>, List<Subscriber>> entry: subscribers.entrySet()) {
 			if (entry.getKey().isAssignableFrom(event.getClass())) {
-				for (BleachSubscriber s: entry.getValue()) {
+				for (Subscriber s: entry.getValue()) {
 					try {
 						s.callSubscriber(event);
 					} catch (Throwable t) {

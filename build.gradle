@@ -10,13 +10,19 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+apply plugin: 'java'
+
+compileJava {
+	options.compilerArgs << '-g:none'
+}
+
 loom {
 	accessWidenerPath = file("src/main/resources/lambdaurora.accesswidener")
 }
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
+	// You should only use this when depending on other nightconfig because
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
@@ -34,7 +40,7 @@ dependencies {
 //	include(modImplementation("com.github.fzakaria:ascii85:1.2"))
 
 	// include(modImplementation("com.github.BleachDrinker420:DiscordIPC:9957fc8114")) {
-    //    exclude group: 'com.google.code.gson', module: 'gson'
+    //    exclude group: 'com.google.code.gson', item: 'gson'
 	// }
 	// include(modImplementation("com.kohlschutter.junixsocket:junixsocket-common:2.2.1"))
 	// include(modImplementation("com.kohlschutter.junixsocket:junixsocket-native-common:2.2.1"))

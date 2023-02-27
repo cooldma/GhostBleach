@@ -45,12 +45,12 @@ public class MixinTitleScreen extends Screen {
 //					new WindowManagerScreen(
 //							Triple.of(new BleachTitleScreen(), "LambDynLights", new ItemStack(Items.MUSIC_DISC_CAT)),
 //							Triple.of(new AccountManagerScreen(), "Accounts", new ItemStack(Items.PAPER)),
-//							Triple.of(ModuleClickGuiScreen.INSTANCE, "ClickGui", new ItemStack(Items.TOTEM_OF_UNDYING)),
+//							Triple.of(LightSourceWidget.INSTANCE, "ClickGui", new ItemStack(Items.TOTEM_OF_UNDYING)),
 //							Triple.of(new BleachOptionsScreen(null), "Options", new ItemStack(Items.REDSTONE)),
 //							Triple.of(new BleachCreditsScreen(), "Credits", new ItemStack(Items.DRAGON_HEAD))) {
 //
 //						public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-//							if (keyCode == ModuleManager.getModule(ClickGui.class).getKey()) {
+//							if (keyCode == NightConfigManager.getModule(ClickGui.class).getKey()) {
 //								selectWindow(2);
 //							}
 //

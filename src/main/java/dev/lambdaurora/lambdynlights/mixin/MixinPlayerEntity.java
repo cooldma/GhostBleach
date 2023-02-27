@@ -8,9 +8,9 @@
  */
 package dev.lambdaurora.lambdynlights.mixin;
 
-import dev.lambdaurora.lambdynlights.module.Module;
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
-import dev.lambdaurora.lambdynlights.module.mods.SpeedMine;
+import dev.lambdaurora.lambdynlights.shadow.NightConfig;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.FileConfigBuilder;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -40,7 +40,7 @@ public abstract class MixinPlayerEntity extends LivingEntity {
 
 	@Inject(method = "getBlockBreakingSpeed", at = @At("HEAD"), cancellable = true)
 	private void getBlockBreakingSpeed(BlockState block, CallbackInfoReturnable<Float> ci) {
-		Module speedMine = ModuleManager.getModule(SpeedMine.class);
+		NightConfig speedMine = NightConfigManager.getModule(FileConfigBuilder.class);
 
 		if (speedMine.isEnabled()) {
 			float breakingSpeed = inventory.getBlockBreakingSpeed(block);

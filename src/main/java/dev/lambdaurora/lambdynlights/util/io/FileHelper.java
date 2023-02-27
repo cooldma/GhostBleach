@@ -12,19 +12,18 @@ import com.google.common.util.concurrent.MoreExecutors;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import dev.lambdaurora.lambdynlights.module.Module;
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
-import dev.lambdaurora.lambdynlights.setting.module.ModuleSetting;
-import dev.lambdaurora.lambdynlights.setting.option.Option;
+import dev.lambdaurora.lambdynlights.api.item.ModuleDynamicLightsInitializer;
+import dev.lambdaurora.lambdynlights.gui.widget.LightSourceWidget;
+import dev.lambdaurora.lambdynlights.shadow.NightConfig;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.api.option.Option;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import dev.lambdaurora.lambdynlights.LambDynLights;
-import dev.lambdaurora.lambdynlights.gui.clickgui.ModuleClickGuiScreen;
-import dev.lambdaurora.lambdynlights.gui.clickgui.UIClickGuiScreen;
-import dev.lambdaurora.lambdynlights.gui.clickgui.window.ClickGuiWindow;
-import dev.lambdaurora.lambdynlights.gui.clickgui.window.UIWindow;
-import dev.lambdaurora.lambdynlights.gui.clickgui.window.UIWindow.Position;
+import dev.lambdaurora.lambdynlights.gui.widget.UILightSourceListWidget;
+import dev.lambdaurora.lambdynlights.gui.widget.window.DynamicLightsOptionsOption;
+import dev.lambdaurora.lambdynlights.gui.widget.window.UIWindow;
+import dev.lambdaurora.lambdynlights.gui.widget.window.UIWindow.Position;
 import dev.lambdaurora.lambdynlights.gui.window.Window;
-import dev.lambdaurora.lambdynlights.util.BleachLogger;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -66,7 +65,7 @@ public class FileHelper {
 	public static void saveModules() {
 		JsonObject json = new JsonObject();
 
-		for (Module mod : ModuleManager.getModules()) {
+		for (NightConfig mod : NightConfigManager.getModules()) {
 			JsonObject modjson = new JsonObject();
 
 			if (mod.isEnabled() != mod.isDefaultEnabled() && !mod.getName().equals("ClickGui") && !mod.getName().equals("Freecam")) {
@@ -74,8 +73,8 @@ public class FileHelper {
 			}
 
 			JsonObject setjson = new JsonObject();
-			Map<String, ModuleSetting<?>> settingMap = getSettingMap(mod.getSettings());
-			for (Entry<String, ModuleSetting<?>> s: settingMap.entrySet()) {
+			Map<String, ModuleDynamicLightsInitializer<?>> settingMap = getSettingMap(mod.getSettings());
+			for (Entry<String, ModuleDynamicLightsInitializer<?>> s: settingMap.entrySet()) {
 				if (!s.getValue().isDefault())
 					setjson.add(s.getKey(), s.getValue().write());
 			}
@@ -87,17 +86,17 @@ public class FileHelper {
 				json.add(mod.getName(), modjson);
 		}
 
-		BleachJsonHelper.setJsonFile("modules.json", json);
+		JsonHelper.setJsonFile("extra.json", json);
 	}
 
 	public static void readModules() {
-		JsonObject jo = BleachJsonHelper.readJsonFile("modules.json");
+		JsonObject jo = JsonHelper.readJsonFile("extra.json");
 
 		if (jo == null)
 			return;
 
 		for (Entry<String, JsonElement> e : jo.entrySet()) {
-			Module mod = ModuleManager.getModule(e.getKey());
+			NightConfig mod = NightConfigManager.getModule(e.getKey());
 
 			if (mod == null)
 				continue;
@@ -108,7 +107,7 @@ public class FileHelper {
 					try {
 						mod.setEnabled(mo.get("toggled").getAsBoolean());
 					} catch (Exception ex) {
-						BleachLogger.error("Error enabling " + e.getKey() + ", Disabling!");
+//						Logger.error("Error enabling " + e.getKey() + ", Disabling!");
 
 						try {
 							mod.setEnabled(false);
@@ -119,18 +118,18 @@ public class FileHelper {
 				}
 
 				if (mo.has("settings") && mo.get("settings").isJsonObject()) {
-					Map<String, ModuleSetting<?>> settingMap = getSettingMap(mod.getSettings());
+					Map<String, ModuleDynamicLightsInitializer<?>> settingMap = getSettingMap(mod.getSettings());
 
 					for (Entry<String, JsonElement> se : mo.get("settings").getAsJsonObject().entrySet()) {
 						try {
-							 ModuleSetting<?> s = settingMap.get(se.getKey());
+							 ModuleDynamicLightsInitializer<?> s = settingMap.get(se.getKey());
 							 if (s != null) {
 								 s.read(se.getValue());
 							 } else {
-								 BleachLogger.logger.warn("Error reading setting \"" + se.getKey() + "\" in module " + mod.getName() + ", removed?");
+//								 Logger.logger.warn("Error reading item \"" + se.getKey() + "\" in item " + mod.getName() + ", removed?");
 							 }
 						} catch (Exception ex) {
-							BleachLogger.logger.error("Error reading setting \"" + se.getKey() + "\" in module " + mod.getName() + ": " + se.getValue(), ex);
+//							Logger.logger.error("Error reading item \"" + se.getKey() + "\" in item " + mod.getName() + ": " + se.getValue(), ex);
 						}
 					}
 				}
@@ -138,9 +137,9 @@ public class FileHelper {
 		}
 	}
 
-	private static Map<String, ModuleSetting<?>> getSettingMap(Collection<ModuleSetting<?>> settings) {
-		Map<String, ModuleSetting<?>> settingMap = new HashMap<>();
-		for (ModuleSetting<?> s: settings) {
+	private static Map<String, ModuleDynamicLightsInitializer<?>> getSettingMap(Collection<ModuleDynamicLightsInitializer<?>> settings) {
+		Map<String, ModuleDynamicLightsInitializer<?>> settingMap = new HashMap<>();
+		for (ModuleDynamicLightsInitializer<?> s: settings) {
 			String name = s.getName();
 			int i = 1;
 			while (settingMap.containsKey(name))
@@ -159,11 +158,11 @@ public class FileHelper {
 			jo.add(o.getName(), o.write());
 		}
 
-		BleachJsonHelper.setJsonFile("options.json", jo);
+		JsonHelper.setJsonFile("options.json", jo);
 	}
 
 	public static void readOptions() {
-		JsonObject jo = BleachJsonHelper.readJsonFile("options.json");
+		JsonObject jo = JsonHelper.readJsonFile("options.json");
 
 		if (jo == null)
 			return;
@@ -178,23 +177,23 @@ public class FileHelper {
 	public static void saveClickGui() {
 		JsonObject jo = new JsonObject();
 
-		for (Window w : ModuleClickGuiScreen.INSTANCE.getWindows()) {
+		for (Window w : LightSourceWidget.INSTANCE.getWindows()) {
 			JsonObject jw = new JsonObject();
 			jw.addProperty("x", w.x1);
 			jw.addProperty("y", w.y1);
 
-			if (w instanceof ClickGuiWindow) {
-				jw.addProperty("hidden", ((ClickGuiWindow) w).hiding);
+			if (w instanceof DynamicLightsOptionsOption) {
+				jw.addProperty("hidden", ((DynamicLightsOptionsOption) w).hiding);
 			}
 
 			jo.add(w.title, jw);
 		}
 
-		BleachJsonHelper.setJsonFile("clickgui.json", jo);
+		JsonHelper.setJsonFile("version.json", jo);
 	}
 
 	public static void readClickGui() {
-		JsonObject jo = BleachJsonHelper.readJsonFile("clickgui.json");
+		JsonObject jo = JsonHelper.readJsonFile("cache.json");
 
 		if (jo == null)
 			return;
@@ -203,7 +202,7 @@ public class FileHelper {
 			if (!e.getValue().isJsonObject())
 				continue;
 
-			for (Window w : ModuleClickGuiScreen.INSTANCE.getWindows()) {
+			for (Window w : LightSourceWidget.INSTANCE.getWindows()) {
 				if (w.title.equals(e.getKey())) {
 					JsonObject jw = e.getValue().getAsJsonObject();
 
@@ -211,11 +210,11 @@ public class FileHelper {
 						w.x1 = jw.get("x").getAsInt();
 						w.y1 = jw.get("y").getAsInt();
 
-						if (w instanceof ClickGuiWindow && jw.has("hidden")) {
-							((ClickGuiWindow) w).hiding = jw.get("hidden").getAsBoolean();
+						if (w instanceof DynamicLightsOptionsOption && jw.has("hidden")) {
+							((DynamicLightsOptionsOption) w).hiding = jw.get("hidden").getAsBoolean();
 						}
 					} catch (Exception ex) {
-						BleachLogger.logger.error("Error trying to load clickgui window: " + e.getKey() + " with data: " + e.getValue());
+//						Logger.logger.error("Error trying to load widget window: " + e.getKey() + " with data: " + e.getValue());
 					}
 				}
 			}
@@ -225,7 +224,7 @@ public class FileHelper {
 	public static void saveUI() {
 		JsonObject jo = new JsonObject();
 
-		for (Entry<String, UIWindow> w : UIClickGuiScreen.INSTANCE.getUIContainer().windows.entrySet()) {
+		for (Entry<String, UIWindow> w : UILightSourceListWidget.INSTANCE.getUIContainer().windows.entrySet()) {
 			JsonObject jw = new JsonObject();
 			jw.addProperty("x", w.getValue().position.xPercent);
 			jw.addProperty("y", w.getValue().position.yPercent);
@@ -242,16 +241,16 @@ public class FileHelper {
 			jo.add(w.getKey(), jw);
 		}
 
-		BleachJsonHelper.setJsonFile("ui.json", jo);
+		JsonHelper.setJsonFile("ui.json", jo);
 	}
 
 	public static void readUI() {
-		JsonObject jo = BleachJsonHelper.readJsonFile("ui.json");
+		JsonObject jo = JsonHelper.readJsonFile("ui.json");
 
 		if (jo == null)
 			return;
 
-		Map<String, UIWindow> uiWindows = UIClickGuiScreen.INSTANCE.getUIContainer().windows;
+		Map<String, UIWindow> uiWindows = UILightSourceListWidget.INSTANCE.getUIContainer().windows;
 		for (Entry<String, JsonElement> e : jo.entrySet()) {
 			if (!e.getValue().isJsonObject() || !uiWindows.containsKey(e.getKey()))
 				continue;
@@ -275,7 +274,7 @@ public class FileHelper {
 	}
 
 	public static void readFriends() {
-		LambDynLights.friendMang.addAll(BleachFileMang.readFileLines("friends.txt"));
+		LambDynLights.friendMang.addAll(FileMang.readFileLines("long.txt"));
 	}
 
 	public static void saveFriends() {
@@ -283,12 +282,12 @@ public class FileHelper {
 		for (String s : LambDynLights.friendMang.getFriends())
 			toWrite += s + "\n";
 
-		BleachFileMang.createEmptyFile("friends.txt");
-		BleachFileMang.appendFile("friends.txt", toWrite);
+		FileMang.createEmptyFile("long.txt");
+		FileMang.appendFile("long.txt", toWrite);
 	}
 
 	public static JsonElement readMiscSetting(String key) {
-		JsonElement element = BleachJsonHelper.readJsonElement("misc.json", key);
+		JsonElement element = JsonHelper.readJsonElement("misc.json", key);
 
 		try {
 			return element;
@@ -298,6 +297,6 @@ public class FileHelper {
 	}
 
 	public static void saveMiscSetting(String key, JsonElement value) {
-		BleachJsonHelper.addJsonElement("misc.json", key, value);
+		JsonHelper.addJsonElement("misc.json", key, value);
 	}
 }

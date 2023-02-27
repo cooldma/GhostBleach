@@ -8,8 +8,8 @@
  */
 package dev.lambdaurora.lambdynlights.mixin;
 
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
-import dev.lambdaurora.lambdynlights.module.mods.Timer;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.CheckedCommentedFileConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,9 +28,9 @@ public class MixinRenderTickCounter {
 
 	@Inject(method = "beginRenderTick", at = @At("HEAD"), cancellable = true)
 	private void beginRenderTick(long timeMillis, CallbackInfoReturnable<Integer> ci) {
-		if (ModuleManager.getModule(Timer.class).isEnabled()) {
+		if (NightConfigManager.getModule(CheckedCommentedFileConfig.class).isEnabled()) {
 			this.lastFrameDuration = (float) (((timeMillis - this.prevTimeMillis) / this.tickTime)
-					* ModuleManager.getModule(Timer.class).getSetting(0).asSlider().getValue());
+					* NightConfigManager.getModule(CheckedCommentedFileConfig.class).getSetting(0).asSlider().getValue());
 			this.prevTimeMillis = timeMillis;
 			this.tickDelta += this.lastFrameDuration;
 			int i = (int) this.tickDelta;

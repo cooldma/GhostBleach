@@ -11,7 +11,7 @@ package dev.lambdaurora.lambdynlights.mixin;
 import dev.lambdaurora.lambdynlights.LambDynLights;
 //import org.lambdynlights.command.Command;
 import dev.lambdaurora.lambdynlights.event.events.EventKeyPress;
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -40,7 +40,7 @@ public class MixinKeyboard {
 //			MinecraftClient.getInstance().setScreen(new ChatScreen(Command.getPrefix()));
 //		}
 
-		ModuleManager.handleKey(key);
+		NightConfigManager.handleKey(key);
 
 		if (key >= 0) {
 			EventKeyPress.InWorld event = new EventKeyPress.InWorld(key, scanCode);

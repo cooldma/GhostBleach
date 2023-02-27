@@ -8,8 +8,8 @@
  */
 package dev.lambdaurora.lambdynlights.mixin;
 
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
-import dev.lambdaurora.lambdynlights.module.mods.NoRender;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.ConfigWriter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -29,7 +29,7 @@ public class MixinCamera {
 
 	@Inject(method = "getSubmersionType", at = @At("HEAD"), cancellable = true)
 	private void getSubmergedFluidState(CallbackInfoReturnable<CameraSubmersionType> ci) {
-		if (ModuleManager.getModule(NoRender.class).isOverlayToggled(3)) {
+		if (NightConfigManager.getModule(ConfigWriter.class).isOverlayToggled(3)) {
 			ci.setReturnValue(CameraSubmersionType.NONE);
 		}
 	}
@@ -39,7 +39,7 @@ public class MixinCamera {
 //		if (bypassCameraClip) {
 //			bypassCameraClip = false;
 //		} else {
-//			Module betterCamera = ModuleManager.getModule(BetterCamera.class);
+//			NightConfig betterCamera = NightConfigManager.getModule(BetterCamera.class);
 //
 //			if (betterCamera.isEnabled()) {
 //				if (betterCamera.getSetting(0).asToggle().getState()) {

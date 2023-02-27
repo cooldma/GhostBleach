@@ -8,8 +8,8 @@
  */
 package dev.lambdaurora.lambdynlights.mixin;
 
-import dev.lambdaurora.lambdynlights.module.ModuleManager;
-import dev.lambdaurora.lambdynlights.module.mods.NoRender;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.ConfigWriter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,7 +25,7 @@ public class MixinMapRenderer {
 
 	@Inject(method = "draw", at = @At("HEAD"), cancellable = true)
 	private void draw(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int id, MapState state, boolean hidePlayerIcons, int light, CallbackInfo ci) {
-		if (ModuleManager.getModule(NoRender.class).isWorldToggled(3)) {
+		if (NightConfigManager.getModule(ConfigWriter.class).isWorldToggled(3)) {
 			ci.cancel();
 		}
 	}

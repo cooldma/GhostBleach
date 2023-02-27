@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import dev.lambdaurora.lambdynlights.eventbus.BleachSubscribe;
-import dev.lambdaurora.lambdynlights.eventbus.BleachSubscriber;
+import dev.lambdaurora.lambdynlights.eventbus.Subscribe;
+import dev.lambdaurora.lambdynlights.eventbus.Subscriber;
 import org.apache.logging.log4j.Logger;
 import dev.lambdaurora.lambdynlights.event.Event;
 
@@ -17,7 +17,7 @@ import dev.lambdaurora.lambdynlights.event.Event;
 public class ExactEventHandler extends EventHandler {
 
 	// <Event Class, Subscribers>
-	private final Map<Class<?>, List<BleachSubscriber>> subscribers = new ConcurrentHashMap<>();
+	private final Map<Class<?>, List<Subscriber>> subscribers = new ConcurrentHashMap<>();
 
 	public ExactEventHandler(String id) {
 		super(id);
@@ -26,8 +26,8 @@ public class ExactEventHandler extends EventHandler {
 	public boolean subscribe(Object object) {
 		boolean added = false;
 		for (Method m: object.getClass().getDeclaredMethods()) {
-			if (m.isAnnotationPresent(BleachSubscribe.class) && m.getParameters().length != 0) {
-				subscribers.computeIfAbsent(m.getParameters()[0].getType(), k -> new CopyOnWriteArrayList<>()).add(new BleachSubscriber(object, m));
+			if (m.isAnnotationPresent(Subscribe.class) && m.getParameters().length != 0) {
+				subscribers.computeIfAbsent(m.getParameters()[0].getType(), k -> new CopyOnWriteArrayList<>()).add(new Subscriber(object, m));
 				added = true;
 			}
 		}
@@ -46,9 +46,9 @@ public class ExactEventHandler extends EventHandler {
 	}
 
 	public void post(Event event, Logger logger) {
-		List<BleachSubscriber> sList = subscribers.get(event.getClass());
+		List<Subscriber> sList = subscribers.get(event.getClass());
 		if (sList != null) {
-			for (BleachSubscriber s: sList) {
+			for (Subscriber s: sList) {
 				try {
 					s.callSubscriber(event);
 				} catch (Throwable t) {
