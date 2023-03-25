@@ -57,7 +57,6 @@ public class AnnotationUtils extends NightConfig {
 	private Text durabilityText = Text.empty();
 	private Text serverText = Text.empty();
 	private Text timestampText = Text.empty();
-	private int test = 0;
 
 	private long prevTime = 0;
 	private double tps = 20;
@@ -492,8 +491,7 @@ public class AnnotationUtils extends NightConfig {
 
 	public static int getRainbow(float sat, float bri, double speed, int offset) {
 		double rainbowState = Math.ceil((System.currentTimeMillis() + offset) / speed) % 360;
-		return 0xFF841D1D;
-//		return 0xff000000 | MathHelper.hsvToRgb((float) (rainbowState / 360.0), sat, bri);
+		return 0xff000000 | MathHelper.hsvToRgb((float) (rainbowState / 360.0), sat, bri);
 	}
 
 	public static int getRainbowFromSettings(int offset) {
