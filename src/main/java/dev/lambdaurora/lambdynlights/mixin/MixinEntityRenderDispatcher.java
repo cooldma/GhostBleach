@@ -10,6 +10,10 @@ package dev.lambdaurora.lambdynlights.mixin;
 
 import dev.lambdaurora.lambdynlights.LambDynLights;
 import dev.lambdaurora.lambdynlights.event.events.EventEntityRender;
+import dev.lambdaurora.lambdynlights.shadow.NightConfigManager;
+import dev.lambdaurora.lambdynlights.shadow.nightconfig.Utils;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.util.math.Box;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,6 +23,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(EntityRenderDispatcher.class)
 public class MixinEntityRenderDispatcher {

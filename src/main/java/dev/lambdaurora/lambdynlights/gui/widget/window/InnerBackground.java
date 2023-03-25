@@ -70,16 +70,16 @@ public class InnerBackground extends DynamicLightsOptionsOption {
 			}
 
 			if (mouseOver(x, y + curY, x + len, y + 12 + curY)) {
-				DrawableHelper.fill(matrices, x, y + curY, x + len, y + 12 + curY, 0x70303070);
+				DrawableHelper.fill(matrices, x, y + curY, x + len, y + 12 + curY, 0xFF841D1D);
 			}
 
 			// If they match: NightConfig gets marked red
 			if (searchedNightConfigs != null && searchedNightConfigs.contains(m.getKey()) && NightConfigManager.getModule(ConfigSpecCorrectionListener.class).getSetting(1).asToggle().getState()) {
-				DrawableHelper.fill(matrices, x, y + curY, x + len, y + 12 + curY, 0x50ff0000);
+				DrawableHelper.fill(matrices, x, y + curY, x + len, y + 12 + curY, 0xFF841D1D);
 			}
 
 			textRend.drawWithShadow(matrices, textRend.trimToWidth(m.getKey().getName(), len),
-					x + 2, y + 2 + curY, m.getKey().isEnabled() ? 0x70efe0 : 0xc0c0c0);
+					x + 2, y + 2 + curY, m.getKey().isEnabled() ? 0xFF841D1D : 0xc0c0c0);
 
 			// Set which item settings show on
 			if (mouseOver(x, y + curY, x + len, y + 12 + curY)) {
@@ -104,7 +104,7 @@ public class InnerBackground extends DynamicLightsOptionsOption {
 						tooltip = s.getTooltip(this, x + 1, y + curY, len - 1);
 					}
 
-					DrawableHelper.fill(matrices, x + 1, y + curY, x + 2, y + curY + s.getHeight(len), 0xff8070b0);
+					DrawableHelper.fill(matrices, x + 1, y + curY, x + 2, y + curY + s.getHeight(len), 0xFF841D1D);
 
 					curY += s.getHeight(len);
 				}

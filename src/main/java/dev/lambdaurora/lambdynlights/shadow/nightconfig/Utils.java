@@ -13,9 +13,9 @@ public class Utils extends NightConfig {
                 new DynamicLightsInitializerSlider("Size", 0.1, 1, 0.3, 1));
     }
 
-    public double getEntityValue(Entity entity) {
-        if (EntityUtils.isPlayer(entity))
-            return getSetting(0).asSlider().getValue();
-        return isEnabled() ? getSetting(0).asSlider().getValue() : 0.1;
-    }
+//    public double getEntityValue(Entity entity) {
+//        if (EntityUtils.isPlayer(entity))
+//            return getSetting(0).asSlider().getValue();
+//        return isEnabled() ? getSetting(0).asSlider().getValue() : 0.1;
+//    }
 }

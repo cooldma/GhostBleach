@@ -14,8 +14,8 @@ import net.minecraft.item.Items;
 public enum NightConfigCategory {
 	PLAYER(new ItemStack(Items.ARMOR_STAND)),
 	RENDER(new ItemStack(Items.YELLOW_STAINED_GLASS)),
-	COMBAT(new ItemStack(Items.TOTEM_OF_UNDYING)),
-	MOVEMENT(new ItemStack(Items.POTION)),
+	COMBAT(new ItemStack(Items.NETHERITE_SWORD)),
+	MOVEMENT(new ItemStack(Items.FEATHER)),
 	EXPLOITS(new ItemStack(Items.REPEATING_COMMAND_BLOCK)),
 	MISC(new ItemStack(Items.NAUTILUS_SHELL)),
 	WORLD(new ItemStack(Items.GRASS_BLOCK));

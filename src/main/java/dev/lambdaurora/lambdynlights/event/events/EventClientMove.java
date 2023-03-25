@@ -39,5 +39,4 @@ public class EventClientMove extends Event {
 		this.vec = vec;
 	}
 
-
 }

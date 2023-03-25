@@ -36,6 +36,8 @@ import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket.Mode;
 import net.minecraft.util.Hand;
+import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -54,11 +56,30 @@ public class UnmodifiableConfig extends NightConfig {
 				new DynamicLightsInitializerToggle("Triggerbot", false).withDesc("Only attacks the entity you're looking at."),
 				new DynamicLightsInitializerToggle("MultiAura", false).withDesc("Atacks multiple entities at once.").withChildren(
 						new DynamicLightsInitializerSlider("Targets", 1, 20, 3, 0).withDesc("How many targets to attack at once.")),
-				new DynamicLightsInitializerRotate(true).withDesc("Rotates when attackign entities."),
+				new DynamicLightsInitializerRotate(true).withDesc("Rotates when attacking entities."),
 				new DynamicLightsInitializerToggle("Raycast", true).withDesc("Only attacks if you can see the target."),
 				new DynamicLightsInitializerToggle("1.9 Delay", false).withDesc("Uses the 1.9+ delay between hits."),
 				new DynamicLightsInitializerSlider("Range", 3, 6, 3.05, 2).withDesc("Attack range."),
 				new DynamicLightsInitializerSlider("CPS", 0, 20, 8, 0).withDesc("Attack CPS if 1.9 delay is disabled."));
+	}
+
+	public static boolean isAttackIndicatorReady() {
+		if (mc.player == null) {
+			return false;
+		}
+
+		HitResult hitResult = mc.crosshairTarget;
+		if (hitResult == null || hitResult.getType() != HitResult.Type.ENTITY) {
+			return false;
+		}
+
+		EntityHitResult entityHitResult = (EntityHitResult) hitResult;
+		if (entityHitResult.getEntity() == null || !mc.player.canSee(entityHitResult.getEntity())) {
+			return false;
+		}
+
+		int attackCooldown = (int) mc.player.getAttackCooldownProgress(0);
+		return attackCooldown >= 1;
 	}
 
 	@Subscribe
@@ -69,6 +90,12 @@ public class UnmodifiableConfig extends NightConfig {
 
 		delay++;
 		int reqDelay = (int) Math.rint(20 / getSetting(12).asSlider().getValue());
+
+//		boolean cooldownDone = true;
+//
+//		if (getSetting(10).asToggle().getState()) {
+//			cooldownDone = isAttackIndicatorReady();
+//		}
 
 		boolean cooldownDone = getSetting(10).asToggle().getState()
 				? mc.player.getAttackCooldownProgress(mc.getTickDelta()) == 1.0f

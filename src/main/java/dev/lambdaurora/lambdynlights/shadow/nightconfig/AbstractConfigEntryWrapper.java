@@ -27,7 +27,7 @@ public class AbstractConfigEntryWrapper extends NightConfig {
 
 	public AbstractConfigEntryWrapper() {
 		super("Flight", KEY_UNBOUND, NightConfigCategory.MOVEMENT, "Allows you to fly.",
-				new DynamicLightsInitializerMode("Mode", "Static", "Jetpack", "ec.me").withDesc("Flight mode."),
+				new DynamicLightsInitializerMode("Mode", "Static", "Jetpack", "ec.me", "Vulcan").withDesc("Flight mode."),
 				new DynamicLightsInitializerSlider("Speed", 0, 5, 1, 1).withDesc("Flight speed."),
 				new DynamicLightsInitializerMode("AntiKick", "Off", "Fall", "Bob", "Packet").withDesc("How to bypass \"you have been kicked for flying\" kicks."));
 	}
@@ -36,7 +36,6 @@ public class AbstractConfigEntryWrapper extends NightConfig {
 	public void onDisable(boolean inWorld) {
 		if (inWorld)
 			mc.player.getAbilities().flying = false;
-		
 		super.onDisable(inWorld);
 	}
 
@@ -98,20 +97,22 @@ public class AbstractConfigEntryWrapper extends NightConfig {
 					mc.player.updatePosition(mc.player.getX(), mc.player.getY() - speed / 10f, mc.player.getZ());
 				}
 			}
+		} else if (getSetting(0).asMode().getMode() == 3) {
+
 		}
 	}
 
 	@Subscribe
 	public void onSendPacket(EventPacket.Send event) {
 		if (getSetting(0).asMode().getMode() == 2 && event.getPacket() instanceof PlayerMoveC2SPacket) {
-			if (!flyTick) {
+			if (flyTick) {
+				flyTick = false;
+			} else {
 				boolean onGround = true;// mc.player.fallDistance >= 0.1f;
 				mc.player.setOnGround(onGround);
 				((PlayerMoveC2SPacket) event.getPacket()).onGround = onGround;
 
 				flyTick = true;
-			} else {
-				flyTick = false;
 			}
 		}
 	}

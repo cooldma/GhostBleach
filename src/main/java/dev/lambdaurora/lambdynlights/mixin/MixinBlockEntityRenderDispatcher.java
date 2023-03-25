@@ -44,4 +44,5 @@ public class MixinBlockEntityRenderDispatcher {
 		EventBlockEntityRender.Single.Post event = new EventBlockEntityRender.Single.Post(blockEntity, matrices, vertexConsumers);
 		LambDynLights.eventBus.post(event);
 	}
+
 }

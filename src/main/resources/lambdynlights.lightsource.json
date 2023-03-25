@@ -1,6 +1,9 @@
 {
   "package": "dev.lambdaurora.lambdynlights.shadow.nightconfig",
-  "modules": [
+  "classes": [
+    "TableParser",
+    "ArrayWriter",
+    "TableWriter",
     "UnmodifiableCommentedConfig",
     "SimpleConfig",
     "InMemoryCommentedFormat",

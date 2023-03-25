@@ -46,7 +46,7 @@ public abstract class DynamicLightsInitializerList<T> extends ModuleDynamicLight
 
 	public void render(InnerBackground window, MatrixStack matrices, int x, int y, int len) {
 		if (window.mouseOver(x, y, x + len, y + 12)) {
-			DrawableHelper.fill(matrices, x + 1, y, x + len, y + 12, 0x70303070);
+			DrawableHelper.fill(matrices, x + 1, y, x + len, y + 12, 0xFF841D1D);
 		}
 
 		MinecraftClient.getInstance().textRenderer.drawWithShadow(matrices, getName(), x + 3, y + 2, 0xcfe0cf);

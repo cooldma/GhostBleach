@@ -54,7 +54,6 @@
     "MixinServerScreen",
     "MixinShader",
     "MixinSoundSystem",
-    "MixinTitleScreen",
     "MixinWorldRenderer"
   ],
   "mixinPriority" : 899,

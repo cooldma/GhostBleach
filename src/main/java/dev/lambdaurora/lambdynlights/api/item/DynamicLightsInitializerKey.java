@@ -29,7 +29,7 @@ public class DynamicLightsInitializerKey extends ModuleDynamicLightsInitializer<
 	@Override
 	public void render(InnerBackground window, MatrixStack matrices, int x, int y, int len) {
 		if (window.mouseOver(x, y, x + len, y + 12)) {
-			DrawableHelper.fill(matrices, x + 1, y, x + len, y + 12, 0x70303070);
+			DrawableHelper.fill(matrices, x + 1, y, x + len, y + 12, 0xFF841D1D);
 		}
 		
 		if (window.keyDown >= 0 && window.keyDown != GLFW.GLFW_KEY_ESCAPE && window.mouseOver(x, y, x + len, y + 12)) {

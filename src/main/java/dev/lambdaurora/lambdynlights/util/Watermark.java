@@ -14,8 +14,8 @@ import net.minecraft.text.Text;
 
 public class Watermark {
 
-	public static String text_1 = "Sweat";
-	public static String text_2 = "Slapper";
+	public static String text_1 = "X";
+	public static String text_2 = "en";
 
 
 	private String text1;
@@ -34,8 +34,8 @@ public class Watermark {
 		}
 
 		if (colors) {
-			color1 = 0xffbf30;
-			color2 = 0xffafcc;
+			color1 = 0xFFD62700;
+			color2 = 0xFFFF2E00;
 		}
 	}
 

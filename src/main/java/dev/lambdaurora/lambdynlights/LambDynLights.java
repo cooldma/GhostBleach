@@ -21,11 +21,7 @@ import dev.lambdaurora.lambdynlights.util.Watermark;
 import dev.lambdaurora.lambdynlights.util.io.FileHelper;
 import dev.lambdaurora.lambdynlights.util.io.FileMang;
 import net.fabricmc.api.ModInitializer;
-
 import java.util.concurrent.CompletableFuture;
-
-//import org.lambdynlights.command.CommandManager;
-//import org.lambdynlights.command.CommandSuggestor;
 
 
 public class LambDynLights implements ModInitializer {
@@ -77,6 +73,7 @@ public class LambDynLights implements ModInitializer {
 
 		FileHelper.readOptions();
 		FileHelper.readFriends();
+
 
 //		if (Option.PLAYERLIST_SHOW_AS_BH_USER.getValue()) {
 //			playerMang.startPinger();

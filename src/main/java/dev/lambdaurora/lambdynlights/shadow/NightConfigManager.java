@@ -96,7 +96,7 @@ public class NightConfigManager {
 		@SerializedName("package")
 		private String packageName;
 
-		@SerializedName("modules")
+		@SerializedName("classes")
 		private List<String> modules;
 
 		public String getPackage() {
