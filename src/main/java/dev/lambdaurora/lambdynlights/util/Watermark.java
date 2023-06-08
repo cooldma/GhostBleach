@@ -14,8 +14,8 @@ import net.minecraft.text.Text;
 
 public class Watermark {
 
-	public static String text_1 = "Sweat";
-	public static String text_2 = "Slapper";
+	public static String text_1 = "Ghost";
+	public static String text_2 = "Bleach";
 
 
 	private String text1;

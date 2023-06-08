@@ -46,7 +46,6 @@
     "SimpleCommentedFileConfig",
     "NoFormatFoundException",
     "GenericBuilder",
-    "FactoryMethod",
     "FormatDetector",
     "FileWatcher",
     "FileNotFoundAction",
