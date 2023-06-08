@@ -1,6 +1,6 @@
-# GhostBleach
+# GhostBleach (Switch branch to "new" for a better and more updated version)
 
-Community approved Minecraft utility mod for Fabric 1.19.x.
+Community approved Minecraft utility mod for Fabric 1.19.2.
 
 ## Showcase
 <details>
