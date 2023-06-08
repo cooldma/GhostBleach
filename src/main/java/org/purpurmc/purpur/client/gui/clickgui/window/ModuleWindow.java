@@ -17,7 +17,6 @@ import java.util.Set;
 import org.purpurmc.purpur.client.network.Module;
 import org.purpurmc.purpur.client.network.ModuleManager;
 import org.purpurmc.purpur.client.network.mods.ClickGui;
-import org.purpurmc.purpur.client.network.mods.Dev;
 import org.purpurmc.purpur.client.setting.module.ModuleSetting;
 
 import net.minecraft.client.font.TextRenderer;
@@ -52,9 +51,7 @@ public class ModuleWindow extends ClickGuiWindow {
 
 	private static int findLen(List<Module> mods, int len) {
 		for (Module m : mods) {
-			if (m instanceof Dev) {
-				return len - 1;
-			}
+
 		}
 		return len;
 	}

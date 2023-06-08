@@ -45,8 +45,6 @@ public class PurpurClient implements ModInitializer {
 
 	private static CompletableFuture<JsonObject> updateJson;
 
-//	private BleachFileMang bleachFileManager;
-
 	public static PurpurClient getInstance() {
 		return instance;
 	}
@@ -61,14 +59,10 @@ public class PurpurClient implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		long initStartTime = System.currentTimeMillis();
-
 		instance = this;
 		watermark = new Watermark();
 		eventBus = new BleachEventBus(new InexactEventHandler("bleachhack"), BleachLogger.logger);
 		playerMang = new BleachPlayerManager();
-
-		//this.eventBus = new EventBus();
-		//this.bleachFileManager = new BleachFileMang();
 		BleachFileMang.init();
 
 		BleachFileHelper.readOptions();
@@ -81,15 +75,6 @@ public class PurpurClient implements ModInitializer {
 			updateJson = BleachOnlineMang.getResourceAsync("update/" + SharedConstants.getGameVersion().getName().replace(' ', '_') + ".json", BodyHandlers.ofString())
 					.thenApply(s -> BleachJsonHelper.parseOrNull(s, JsonObject.class));
 		}
-
-		JsonElement mainMenu = BleachFileHelper.readMiscSetting("customTitleScreen");
-		if (mainMenu != null && !mainMenu.getAsBoolean()) {
-			//			BleachTitleScreen.customTitleScreen = false;
-		}
-
-		//		BleachLogger.logger.log(Level.INFO, "Loaded PurpurClient (Phase 1) in %d ms.", System.currentTimeMillis() - initStartTime);
-
-
 	}
 
 	// Phase 2
@@ -98,19 +83,10 @@ public class PurpurClient implements ModInitializer {
 		long initStartTime = System.currentTimeMillis();
 		ModuleManager.loadModules(this.getClass().getClassLoader().getResourceAsStream("purpurclient.refmap.json"));
 		BleachFileHelper.readModules();
-
 		// TODO: move ClickGui and UI to phase 1
 		ModuleClickGuiScreen.INSTANCE.initWindows();
 		BleachFileHelper.readClickGui();
 		BleachFileHelper.readUI();
-
-		//		CommandManager.loadCommands(this.getClass().getClassLoader().getResourceAsStream("purpurmc.commands.json"));
-		//		CommandSuggestor.start();
-
 		BleachFileHelper.startSavingExecutor();
-		ModuleManager.getModule("Dev").setEnabled(true);
-
-//		BleachLogger.logger.log(Level.INFO, "Loaded PurpurClient (Phase 2) in %d ms.", System.currentTimeMillis() - initStartTime);
-
 	}
 }

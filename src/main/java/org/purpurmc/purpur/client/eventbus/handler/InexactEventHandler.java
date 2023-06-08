@@ -10,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 import org.purpurmc.purpur.client.event.Event;
 import org.purpurmc.purpur.client.eventbus.BleachSubscribe;
 import org.purpurmc.purpur.client.eventbus.BleachSubscriber;
-import org.purpurmc.purpur.client.network.mods.Dev;
 
 /**
  * Slower event handler that allows events to the posted to children of a event class.
@@ -53,10 +52,7 @@ public class InexactEventHandler extends EventHandler {
 					try {
 						s.callSubscriber(event);
 					} catch (Throwable t) {
-						if (t instanceof Dev.AuthException) {
-							throw t;
-						}
-//						logger.error("Exception thrown by subscriber method " + s.getSignature() + " when dispatching event: " + s.getEventClass().getName(), t);
+
 					}
 				}
 			}
